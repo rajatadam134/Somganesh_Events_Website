@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Somganesh | Luxury Event Curation & Design</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=Space+Grotesk:wght@600&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-tertiary-fixed": "#0c1b36",
+                                                "on-tertiary-container": "#1e293b",
+                                                "surface-dim": "#030712",
+                                                "on-surface": "#e2e8f0",
+                                                "secondary-fixed-dim": "#64748b",
+                                                "primary-fixed-dim": "#f5c453",
+                                                "tertiary-fixed": "#cbd5e1",
+                                                "surface-tint": "#f1a80a",
+                                                "on-background": "#e2e8f0",
+                                                "surface-container": "#0c1b36",
+                                                "on-error-container": "#ffdad6",
+                                                "on-primary-container": "#fef08a",
+                                                "on-secondary-fixed": "#0f172a",
+                                                "tertiary": "#94a3b8",
+                                                "error-container": "#93000a",
+                                                "background": "#050c1a",
+                                                "secondary": "#64748b",
+                                                "on-tertiary-fixed-variant": "#475569",
+                                                "surface": "#050c1a",
+                                                "on-secondary-container": "#94a3b8",
+                                                "surface-container-low": "#081224",
+                                                "on-primary": "#451a03",
+                                                "inverse-primary": "#d97706",
+                                                "tertiary-container": "#334155",
+                                                "tertiary-fixed-dim": "#94a3b8",
+                                                "on-tertiary": "#0f172a",
+                                                "surface-bright": "#1f3c73",
+                                                "inverse-surface": "#e2e8f0",
+                                                "primary": "#f1a80a",
+                                                "surface-variant": "#122548",
+                                                "outline-variant": "#1e293b",
+                                                "outline": "#475569",
+                                                "on-primary-fixed-variant": "#78350f",
+                                                "on-secondary": "#0f172a",
+                                                "surface-container-highest": "#18305c",
+                                                "inverse-on-surface": "#0f172a",
+                                                "on-error": "#690005",
+                                                "on-surface-variant": "#94a3b8",
+                                                "error": "#ffb4ab",
+                                                "primary-fixed": "#fef08a",
+                                                "surface-container-lowest": "#02040a",
+                                                "secondary-fixed": "#e2e8f0",
+                                                "on-secondary-fixed-variant": "#334155",
+                                                "secondary-container": "#1e293b",
+                                                "surface-container-high": "#122548",
+                                                "primary-container": "#d97706",
+                                                "on-primary-fixed": "#451a03"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "margin-mobile": "20px",
+                                                "section-gap": "160px",
+                                                "container-max": "1280px",
+                                                "margin-desktop": "64px",
+                                                "gutter": "24px",
+                                                "unit": "8px"
+                                        },
+                                        "fontFamily": {
+                                                "headline-lg": [
+                                                        "Playfair Display"
+                                                ],
+                                                "body-lg": [
+                                                        "Hanken Grotesk"
+                                                ],
+                                                "display-lg": [
+                                                        "Playfair Display"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Playfair Display"
+                                                ],
+                                                "label-caps": [
+                                                        "Space Grotesk"
+                                                ],
+                                                "headline-md": [
+                                                        "Playfair Display"
+                                                ],
+                                                "body-md": [
+                                                        "Hanken Grotesk"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "headline-lg": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "56px",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "18px",
+                                                        {
+                                                                "lineHeight": "28px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "72px",
+                                                        {
+                                                                "lineHeight": "84px",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "40px",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "label-caps": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "letterSpacing": "0.1em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "40px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "body-md": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                html {
+                        scroll-behavior: smooth;
+                }
+
+                /* Base page styling consistent with premium luxury branding */
+                body {
+                        background-color: #050C1A;
+                        color: #E2E8F0;
+                }
+
+                .text-ember {
+                        color: #E8A217;
+                }
+
+                .bg-ember {
+                        background-color: #E8A217;
+                }
+
+                .border-ember {
+                        border-color: #E8A217;
+                }
+
+                /* 3D Perspective card-flip effects */
+                .service-card-wrapper {
+                        perspective: 1200px;
+                }
+
+                .service-card-inner {
+                        position: relative;
+                        width: 100%;
+                        height: 420px;
+                        /* Uniform height across all screen layouts */
+                        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                        transform-style: preserve-3d;
+                }
+
+                .service-card-wrapper.flipped .service-card-inner {
+                        transform: rotateY(180deg);
+                }
+
+                .service-card-front,
+                .service-card-back {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        backface-visibility: hidden;
+                        -webkit-backface-visibility: hidden;
+                        border-radius: 0.75rem;
+                        /* rounded-xl */
+                }
+
+                .service-card-back {
+                        transform: rotateY(180deg);
+                }
+
+                /* Infinite linear marquee scroll animation for camera roll */
+                @keyframes scroll-film {
+                        0% {
+                                transform: translateX(0);
+                        }
+
+                        100% {
+                                transform: translateX(-50%);
+                        }
+                }
+
+                /* Very subtle translateY filmstrip waving motion */
+                @keyframes wave {
+                        0% {
+                                transform: translateY(0px) rotate(0deg);
+                        }
+
+                        25% {
+                                transform: translateY(-8px) rotate(-0.5deg);
+                        }
+
+                        50% {
+                                transform: translateY(0px) rotate(0deg);
+                        }
+
+                        75% {
+                                transform: translateY(8px) rotate(0.5deg);
+                        }
+
+                        100% {
+                                transform: translateY(0px) rotate(0deg);
+                        }
+                }
+
+                .animate-scroll-film {
+                        animation: scroll-film 40s linear infinite;
+                }
+
+                /* The infinite carousel does NOT pause on hover, ensuring endless movie-like flow */
+                .film-container:hover .animate-scroll-film {
+                        animation-play-state: running;
+                }
+
+                .film-wave {
+                        animation: wave 12s ease-in-out infinite;
+                }
+
+                .film-wave:nth-child(1) {
+                        animation-delay: 0s;
+                }
+
+                .film-wave:nth-child(2) {
+                        animation-delay: -1.5s;
+                }
+
+                .film-wave:nth-child(3) {
+                        animation-delay: -3s;
+                }
+
+                .film-wave:nth-child(4) {
+                        animation-delay: -4.5s;
+                }
+
+                .film-wave:nth-child(5) {
+                        animation-delay: -6s;
+                }
+
+                .film-wave:nth-child(6) {
+                        animation-delay: -7.5s;
+                }
+
+                .film-wave:nth-child(7) {
+                        animation-delay: -9s;
+                }
+
+                .film-wave:nth-child(8) {
+                        animation-delay: -10.5s;
+                }
+
+                .film-wave:nth-child(9) {
+                        animation-delay: -12s;
+                }
+
+                .film-wave:nth-child(10) {
+                        animation-delay: -13.5s;
+                }
+        </style>
+</head>
+
+<body class="antialiased overflow-x-hidden selection:bg-primary selection:text-on-primary">
+        <!-- TopNavBar: High-end floating glassmorphic navbar with Somganesh branding -->
+        <nav
+                class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-gutter max-w-container-max mx-auto bg-[#050C1A]/40 backdrop-blur-md border-b border-white/5">
+                <div class="flex items-center">
+                        <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-14 w-auto object-contain" />
+                </div>
+                <div class="hidden md:flex gap-8 items-center" id="nav-links">
+                        <a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 transition-colors"
+                                href="#home">Home</a>
+                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+                                href="#services">Services</a>
+                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+                                href="#portfolio">Portfolio</a>
+                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+                                href="#about">About</a>
+                </div>
+                <div class="hidden md:flex">
+                        <a class="flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-body-md font-bold hover:bg-gray-200 transition-colors shadow-lg"
+                                href="#contact">
+                                Book Consultation
+                                <span class="bg-ember text-white rounded-full p-1 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+                                </span>
+                        </a>
+                </div>
+                <button class="md:hidden text-on-surface" aria-label="Toggle Navigation Menu">
+                        <span class="material-symbols-outlined">menu</span>
+                </button>
+        </nav>
+
+        <main>
+                <!-- Hero Section: Premium cinematic landing look featuring custom overlays, decorative pillars, and CTAs -->
+                <section id="home"
+                        class="min-h-screen relative flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-32 pb-24 overflow-hidden">
+                        <!-- Background Image with Graduate Dark Scrim -->
+                        <div class="absolute inset-0 z-0">
+                                <img alt="Cinematic luxury event lighting background"
+                                        class="w-full h-full object-cover object-center opacity-70"
+                                        src="images/Gemini_Generated_Image_2.png" />
+                                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-[#050C1A]">
+                                </div>
+                                <div
+                                        class="absolute inset-0 bg-gradient-to-r from-[#050C1A] via-transparent to-[#050C1A] opacity-95">
+                                </div>
+                        </div>
+                        <div
+                                class="relative z-10 w-full max-w-container-max mx-auto grid grid-cols-4 md:grid-cols-12 gap-gutter items-center">
+                                <div class="col-span-4 md:col-span-8 flex flex-col items-start gap-6">
+                                        <h2
+                                                class="font-headline-md text-headline-md text-primary-fixed-dim font-medium tracking-wide">
+                                                Artistry in Execution</h2>
+                                        <h1
+                                                class="font-display-lg text-display-lg md:text-[96px] md:leading-[100px] text-white font-bold max-w-3xl tracking-tight">
+                                                Curating Luxury <br /> Celebrations
+                                        </h1>
+                                        <div
+                                                class="mt-8 md:mt-12 flex flex-col md:flex-row gap-8 items-start md:items-end justify-between w-full md:w-[120%]">
+                                                <div class="flex flex-wrap gap-8 md:gap-16 opacity-80">
+                                                        <!-- Decorative Event Management Pillars -->
+                                                        <div class="flex flex-col gap-2">
+                                                                <span
+                                                                        class="font-label-caps text-label-caps text-ember">#01
+                                                                        Planning</span>
+                                                                <span
+                                                                        class="font-body-md text-body-md text-on-surface font-medium">Flawless
+                                                                        Logistics</span>
+                                                        </div>
+                                                        <div class="flex flex-col gap-2">
+                                                                <span
+                                                                        class="font-label-caps text-label-caps text-ember">#02
+                                                                        Production</span>
+                                                                <span
+                                                                        class="font-body-md text-body-md text-on-surface font-medium">Cinematic
+                                                                        Scenography</span>
+                                                        </div>
+                                                        <div class="flex flex-col gap-2">
+                                                                <span
+                                                                        class="font-label-caps text-label-caps text-ember">#03
+                                                                        Styling</span>
+                                                                <span
+                                                                        class="font-body-md text-body-md text-on-surface font-medium">Bespoke
+                                                                        Floral &amp; Décor</span>
+                                                        </div>
+                                                        <div class="flex flex-col gap-2">
+                                                                <span
+                                                                        class="font-label-caps text-label-caps text-ember">#04
+                                                                        Hospitality</span>
+                                                                <span
+                                                                        class="font-body-md text-body-md text-on-surface font-medium">Impeccable
+                                                                        Guest Service</span>
+                                                        </div>
+                                                </div>
+                                                <!-- Right Supporting Column containing Headline & CTA buttons -->
+                                                <div
+                                                        class="max-w-sm flex flex-col gap-5 text-left md:text-right md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-12 z-20">
+                                                        <h3
+                                                                class="font-headline-md text-headline-md text-white font-semibold leading-snug">
+                                                                Every detail, flawlessly orchestrated.</h3>
+                                                        <p
+                                                                class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                                                From concept design and architectural styling to
+                                                                gastronomy, entertainment, and production management. We
+                                                                craft extraordinary moments.</p>
+                                                        <div
+                                                                class="flex flex-wrap gap-4 justify-start md:justify-end mt-4">
+                                                                <!-- Primary CTA -->
+                                                                <a class="group/btn relative inline-flex items-center justify-center gap-3 bg-ember text-white px-8 py-3.5 rounded-full font-body-md font-bold hover:bg-[#D97706] transition-all duration-300 shadow-[0_0_15px_rgba(232,162,23,0.3)] hover:shadow-[0_0_25px_rgba(232,162,23,0.5)]"
+                                                                        href="#contact">
+                                                                        Book Consultation
+                                                                        <span
+                                                                                class="bg-white/20 text-white rounded-full p-1 flex items-center justify-center transition-transform duration-300 group-hover/btn:translate-x-1">
+                                                                                <span
+                                                                                        class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+                                                                        </span>
+                                                                </a>
+                                                                <!-- Secondary CTA -->
+                                                                <a class="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-body-md font-bold text-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-all duration-300"
+                                                                        href="#services">
+                                                                        View Services
+                                                                </a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- Bottom decorative cinematic curve transition -->
+                        <div class="absolute bottom-0 left-0 w-full h-24 bg-[#050C1A]"
+                                style="border-top-left-radius: 50% 100%; border-top-right-radius: 50% 100%;"></div>
+                </section>
+
+                <!-- About & Services Grid Section -->
+                <section class="pt-8 pb-section-gap px-margin-mobile md:px-margin-desktop bg-[#050C1A] relative z-10"
+                        id="services">
+                        <div class="max-w-container-max mx-auto flex flex-col gap-16">
+                                <!-- About segment -->
+                                <div class="max-w-4xl">
+                                        <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-24 w-auto object-contain mb-4" />
+                                        <h2
+                                                class="font-display-lg text-display-lg md:text-[72px] md:leading-[84px] text-white font-bold mb-6">
+                                                Designing experiences that linger in the mind.</h2>
+                                        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">We are a
+                                                premier event design and curation firm focusing on crafting
+                                                unforgettable luxury celebrations. Our approach blends cinematic
+                                                scenography with meticulous logistical coordination to bring
+                                                extraordinary visions to life.</p>
+                                </div>
+
+                                <!-- Services Grid: Exactly 6 Cards, flips on click to show case studies -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+
+                                        <!-- Card 1: Event Curation -->
+                                        <div class="service-card-wrapper w-full h-[420px] cursor-pointer" role="button"
+                                                tabindex="0"
+                                                aria-label="Event Curation Service - Click to flip for gallery">
+                                                <div class="service-card-inner">
+                                                        <!-- Front Side -->
+                                                        <div
+                                                                class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
+                                                                <div
+                                                                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                                                </div>
+                                                                <div class="relative z-10 flex flex-col gap-4">
+                                                                        <span
+                                                                                class="material-symbols-outlined text-4xl text-primary mb-2">auto_awesome</span>
+                                                                        <h3
+                                                                                class="font-headline-md text-headline-md text-white">
+                                                                                Signature Event Curation</h3>
+                                                                        <p
+                                                                                class="font-body-md text-body-md text-on-surface-variant">
+                                                                                Curating bespoke narratives for high-profile galas, elite receptions, and landmark celebrations, customized to reflect your family's heritage and grand vision.</p>
+                                                                </div>
+                                                                <div
+                                                                        class="relative z-10 flex justify-between items-center text-sm font-label-caps text-primary mt-6">
+                                                                        <span>Tap to View Design</span>
+                                                                        <span
+                                                                                class="material-symbols-outlined text-xl transition-transform duration-300 group-hover:translate-x-1">flip_to_back</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div
+                                                                class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
+                                                                <img alt="Signature Event Curation"
+                                                                        class="w-full h-full object-cover"
+                                                                        src="images/image_1.png" />
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                        <!-- Card 2: Venue Styling -->
+                                        <div class="service-card-wrapper w-full h-[420px] cursor-pointer" role="button"
+                                                tabindex="0"
+                                                aria-label="Venue Styling Service - Click to flip for gallery">
+                                                <div class="service-card-inner">
+                                                        <!-- Front Side -->
+                                                        <div
+                                                                class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
+                                                                <div
+                                                                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                                                </div>
+                                                                <div class="relative z-10 flex flex-col gap-4">
+                                                                        <span
+                                                                                class="material-symbols-outlined text-4xl text-primary mb-2">palette</span>
+                                                                        <h3
+                                                                                class="font-headline-md text-headline-md text-white">
+                                                                                Grand Venue Transformation</h3>
+                                                                        <p
+                                                                                class="font-body-md text-body-md text-on-surface-variant">
+                                                                                Transforming elite venues into palatial marvels. Exquisite spatial layouts, majestic structures, luxury fabrics, and international-grade floral design.</p>
+                                                                </div>
+                                                                <div
+                                                                        class="relative z-10 flex justify-between items-center text-sm font-label-caps text-primary mt-6">
+                                                                        <span>Tap to View Design</span>
+                                                                        <span
+                                                                                class="material-symbols-outlined text-xl transition-transform duration-300 group-hover:translate-x-1">flip_to_back</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div
+                                                                class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
+                                                                <img alt="Grand Venue Transformation"
+                                                                        class="w-full h-full object-cover"
+                                                                        src="images/image_4.png" />
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                        <!-- Card 3: Wedding Planning -->
+                                        <div class="service-card-wrapper w-full h-[420px] cursor-pointer" role="button"
+                                                tabindex="0"
+                                                aria-label="Wedding Planning Service - Click to flip for gallery">
+                                                <div class="service-card-inner">
+                                                        <!-- Front Side -->
+                                                        <div
+                                                                class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
+                                                                <div
+                                                                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                                                </div>
+                                                                <div class="relative z-10 flex flex-col gap-4">
+                                                                        <span
+                                                                                class="material-symbols-outlined text-4xl text-primary mb-2">favorite</span>
+                                                                        <h3
+                                                                                class="font-headline-md text-headline-md text-white">
+                                                                                Royal Weddings &amp; Vivah</h3>
+                                                                        <p
+                                                                                class="font-body-md text-body-md text-on-surface-variant">
+                                                                                Orchestrating majestic multi-day Indian weddings. From grand destination logistics to bespoke design, crafting a fairytale celebration for your union.</p>
+                                                                </div>
+                                                                <div
+                                                                        class="relative z-10 flex justify-between items-center text-sm font-label-caps text-primary mt-6">
+                                                                        <span>Tap to View Design</span>
+                                                                        <span
+                                                                                class="material-symbols-outlined text-xl transition-transform duration-300 group-hover:translate-x-1">flip_to_back</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div
+                                                                class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
+                                                                <img alt="Royal Weddings &amp; Vivah"
+                                                                        class="w-full h-full object-cover"
+                                                                        src="images/image_8.png" />
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                        <!-- Card 4: Divine Deity Decor -->
+                                        <div class="service-card-wrapper w-full h-[420px] cursor-pointer" role="button"
+                                                tabindex="0"
+                                                aria-label="Divine Deity Decor Service - Click to flip for gallery">
+                                                <div class="service-card-inner">
+                                                        <!-- Front Side -->
+                                                        <div
+                                                                class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
+                                                                <div
+                                                                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                                                </div>
+                                                                <div class="relative z-10 flex flex-col gap-4">
+                                                                        <span
+                                                                                class="material-symbols-outlined text-4xl text-primary mb-2">temple_hindu</span>
+                                                                        <h3
+                                                                                class="font-headline-md text-headline-md text-white">
+                                                                                Divine Deity Decor</h3>
+                                                                        <p
+                                                                                class="font-body-md text-body-md text-on-surface-variant">
+                                                                                Celestial decorations for temples, sacred shrines, and deity statues. Melding divine tradition with opulent aesthetics for auspicious family occasions.</p>
+                                                                </div>
+                                                                <div
+                                                                        class="relative z-10 flex justify-between items-center text-sm font-label-caps text-primary mt-6">
+                                                                        <span>Tap to View Design</span>
+                                                                        <span
+                                                                                class="material-symbols-outlined text-xl transition-transform duration-300 group-hover:translate-x-1">flip_to_back</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div
+                                                                class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
+                                                                <img alt="Divine Deity Decor"
+                                                                        class="w-full h-full object-cover"
+                                                                        src="images/image_12.jpeg" />
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                        <!-- Card 5: Birthday Celebrations -->
+                                        <div class="service-card-wrapper w-full h-[420px] cursor-pointer" role="button"
+                                                tabindex="0"
+                                                aria-label="Birthday Celebrations Service - Click to flip for gallery">
+                                                <div class="service-card-inner">
+                                                        <!-- Front Side -->
+                                                        <div
+                                                                class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
+                                                                <div
+                                                                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                                                </div>
+                                                                <div class="relative z-10 flex flex-col gap-4">
+                                                                        <span
+                                                                                class="material-symbols-outlined text-4xl text-primary mb-2">cake</span>
+                                                                        <h3
+                                                                                class="font-headline-md text-headline-md text-white">
+                                                                                Milestone Celebrations</h3>
+                                                                        <p
+                                                                                class="font-body-md text-body-md text-on-surface-variant">
+                                                                                Spectacular milestone birthdays and anniversary celebrations. Dazzling thematic concepts, premium guest hospitality, and high-production entertainment.</p>
+                                                                </div>
+                                                                <div
+                                                                        class="relative z-10 flex justify-between items-center text-sm font-label-caps text-primary mt-6">
+                                                                        <span>Tap to View Design</span>
+                                                                        <span
+                                                                                class="material-symbols-outlined text-xl transition-transform duration-300 group-hover:translate-x-1">flip_to_back</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div
+                                                                class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
+                                                                <img alt="Milestone Celebrations"
+                                                                        class="w-full h-full object-cover"
+                                                                        src="images/image_13.jpeg" />
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                        <!-- Card 6: Royal Festive Galas -->
+                                        <div class="service-card-wrapper w-full h-[420px] cursor-pointer" role="button"
+                                                tabindex="0"
+                                                aria-label="Royal Festive Galas Service - Click to flip for gallery">
+                                                <div class="service-card-inner">
+                                                        <!-- Front Side -->
+                                                        <div
+                                                                class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
+                                                                <div
+                                                                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                                                </div>
+                                                                <div class="relative z-10 flex flex-col gap-4">
+                                                                        <span
+                                                                                class="material-symbols-outlined text-4xl text-primary mb-2">celebration</span>
+                                                                        <h3
+                                                                                class="font-headline-md text-headline-md text-white">
+                                                                                Royal Festive Galas</h3>
+                                                                        <p
+                                                                                class="font-body-md text-body-md text-on-surface-variant">
+                                                                                Bespoke styling for high-energy Sangeet nights, vibrant Mehendi festivals, and opulent Diwali or Ganesh Chaturthi galas, rich in cultural elegance.</p>
+                                                                </div>
+                                                                <div
+                                                                        class="relative z-10 flex justify-between items-center text-sm font-label-caps text-primary mt-6">
+                                                                        <span>Tap to View Design</span>
+                                                                        <span
+                                                                                class="material-symbols-outlined text-xl transition-transform duration-300 group-hover:translate-x-1">flip_to_back</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div
+                                                                class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
+                                                                <img alt="Royal Festive Galas"
+                                                                        class="w-full h-full object-cover"
+                                                                        src="images/image_15.PNG" />
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                </div>
+                        </div>
+                </section>
+
+                <!-- Behind the Designs / Infinite Camera Moving Reel Carousel Section -->
+                <section class="py-section-gap px-0 bg-[#050C1A] overflow-hidden relative border-t border-white/5"
+                        id="portfolio">
+                        <div
+                                class="max-w-container-max mx-auto mb-16 flex flex-col items-center text-center gap-4 relative z-10 px-margin-mobile md:px-margin-desktop">
+                                <span class="font-label-caps text-label-caps text-ember">Visual Narrative</span>
+                                <h2 class="font-headline-lg text-headline-lg text-white">Our Cinematic Portfolio</h2>
+                                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">An endless camera
+                                        roll of luxury and high-impact events handled by our firm.</p>
+                        </div>
+
+                        <!-- Endless Moving Camera Roll Marquee (Hover-pause disabled) -->
+                        <div class="w-full relative bg-black py-24 overflow-hidden film-container">
+                                <!-- Top Sprocket Holes -->
+                                <div
+                                        class="absolute top-0 left-0 right-0 h-8 bg-[repeating-linear-gradient(90deg,#050C1A,#050C1A_20px,transparent_20px,transparent_32px)] border-b border-white/10 z-20 w-[200%]">
+                                </div>
+                                <!-- Infinite Scrolling Film Track -->
+                                <div class="flex gap-8 animate-scroll-film w-max px-4 py-16 items-center">
+                                        <!-- Sequence 1 -->
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
+                                                <img alt="Somganesh Portfolio Item 1"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_16.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
+                                                <img alt="Somganesh Portfolio Item 2"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_2.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
+                                                <img alt="Somganesh Portfolio Item 3"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_5.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 4"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_6.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 5"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_7.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 6"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_10.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 7"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_17.jpeg" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 8"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_19.jpeg" />
+                                        </div>
+
+                                        <!-- Sequence 2 (Identical Duplicate for seamless infinite scroll) -->
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 1 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_16.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 2 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_2.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 3 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_5.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 4 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_6.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 5 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_7.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 6 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_10.png" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 7 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_17.jpeg" />
+                                        </div>
+                                        <div
+                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
+                                                <img alt="Somganesh Portfolio Item 8 Duplicate"
+                                                        class="w-full h-full object-cover transition-transform duration-700"
+                                                        src="images/image_19.jpeg" />
+                                        </div>
+                                </div>>
+
+                                <!-- Bottom Sprocket Holes -->
+                                <div
+                                        class="absolute bottom-0 left-0 right-0 h-8 bg-[repeating-linear-gradient(90deg,#050C1A,#050C1A_20px,transparent_20px,transparent_32px)] border-t border-white/10 z-20 w-[200%]">
+                                </div>
+                        </div>
+                </section>
+                
+                <!-- About target for bottom scroll navigation -->
+                <div id="about" class="scroll-mt-24"></div>
+        </main>
+
+        <!-- Footer: Comprehensive 4-column luxury event management site footer -->
+        <footer class="bg-surface-container-lowest border-t border-outline-variant px-margin-mobile md:px-margin-desktop py-20 relative z-10 w-full"
+                id="contact">
+                <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                        <!-- Column 1: Brand & Contact Info -->
+                        <div class="flex flex-col gap-4">
+                                <div class="flex items-center">
+                                        <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-14 w-auto object-contain" />
+                                </div>
+                                <p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-2">Elevating
+                                        events and celebrations into curated, cinematic visual masterpieces globally.
+                                </p>
+                                <div class="mt-4 flex flex-col gap-2.5 font-body-md text-on-surface-variant">
+                                        <a class="hover:text-primary transition-colors flex items-center gap-2"
+                                                href="mailto:info@somganesh.com">
+                                                <span class="material-symbols-outlined text-base text-ember">mail</span>
+                                                info@somganesh.com
+                                        </a>
+                                        <a class="hover:text-primary transition-colors flex items-center gap-2"
+                                                href="tel:+18005550199">
+                                                <span
+                                                        class="material-symbols-outlined text-base text-ember">phone</span>
+                                                +1 (800) 555-0199
+                                        </a>
+                                        <p class="flex items-center gap-2">
+                                                <span
+                                                        class="material-symbols-outlined text-base text-ember">location_on</span>
+                                                London • New York • Paris
+                                        </p>
+                                </div>
+                        </div>
+
+                        <!-- Column 2: Our Services -->
+                        <div class="flex flex-col gap-4">
+                                <h4
+                                        class="font-label-caps text-label-caps text-on-surface border-b border-white/10 pb-2 tracking-wider">
+                                        Our Services</h4>
+                                <div class="flex flex-col gap-2.5">
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#services">Event Curation</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#services">Venue Transformation</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#services">Royal Weddings</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#services">Divine Deity Decor</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#services">Milestone Celebrations</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#services">Royal Festive Galas</a>
+                                </div>
+                        </div>
+
+                        <!-- Column 3: Quick Navigation -->
+                        <div class="flex flex-col gap-4">
+                                <h4
+                                        class="font-label-caps text-label-caps text-on-surface border-b border-white/10 pb-2 tracking-wider">
+                                        Navigation</h4>
+                                <div class="flex flex-col gap-2.5">
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#">Home</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#about">About Our Firm</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#portfolio">Our Portfolio</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#contact">Book Consultation</a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                                                href="#">Privacy Policy</a>
+                                </div>
+                        </div>
+
+                        <!-- Column 4: Socials & Inspiration -->
+                        <div class="flex flex-col gap-4">
+                                <h4
+                                        class="font-label-caps text-label-caps text-on-surface border-b border-white/10 pb-2 tracking-wider">
+                                        Follow Us</h4>
+                                <p class="font-body-md text-body-md text-on-surface-variant mb-1 leading-relaxed">Follow
+                                        our journey for luxury events inspiration.</p>
+                                <div class="flex flex-col gap-2.5">
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                                                href="#">
+                                                <span
+                                                        class="material-symbols-outlined text-sm text-primary">photo_camera</span>
+                                                Instagram
+                                        </a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                                                href="#">
+                                                <span
+                                                        class="material-symbols-outlined text-sm text-primary">groups</span>
+                                                LinkedIn
+                                        </a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                                                href="#">
+                                                <span
+                                                        class="material-symbols-outlined text-sm text-primary">brush</span>
+                                                Pinterest
+                                        </a>
+                                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                                                href="#">
+                                                <span
+                                                        class="material-symbols-outlined text-sm text-primary">play_circle</span>
+                                                YouTube
+                                        </a>
+                                </div>
+                        </div>
+                </div>
+
+                <div
+                        class="max-w-container-max mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+                        <p class="font-body-md text-body-md text-on-surface-variant">&copy; 2026 Somganesh Luxury
+                                Events. All rights reserved.</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Crafted with Cinematic Precision
+                        </p>
+                </div>
+        </footer>
+
+        <!-- JavaScript: Handles click and keyboard 3D card flips and cinematic marquee intersection observer -->
+        <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                        // Toggle .flipped class when clicking a service card
+                        const serviceCards = document.querySelectorAll('.service-card-wrapper');
+
+                        serviceCards.forEach(card => {
+                                card.addEventListener('click', function () {
+                                        this.classList.toggle('flipped');
+                                });
+
+                                // Support keyboard trigger (Enter and Space keys) for fully accessible flipping
+                                card.addEventListener('keydown', function (e) {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault(); // prevent scrolling space behavior
+                                                this.classList.toggle('flipped');
+                                        }
+                                });
+                        });
+
+                        // Intersection Observer for camera roll scrolling effects (scale and opacity on focus)
+                        const frames = document.querySelectorAll('.film-wave');
+
+                        const observerOptions = {
+                                root: null,
+                                rootMargin: '0px',
+                                threshold: 0.5
+                        };
+
+                        const observer = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                        if (entry.isIntersecting) {
+                                                entry.target.classList.add('scale-110', 'opacity-100', 'z-10');
+                                                entry.target.classList.remove('opacity-60', 'scale-100');
+                                                const img = entry.target.querySelector('img');
+                                                if (img) img.classList.add('scale-105');
+                                        } else {
+                                                entry.target.classList.remove('scale-110', 'opacity-100', 'z-10');
+                                                entry.target.classList.add('opacity-60', 'scale-100');
+                                                const img = entry.target.querySelector('img');
+                                                if (img) img.classList.remove('scale-105');
+                                        }
+                                });
+                        }, observerOptions);
+
+                        frames.forEach(frame => {
+                                observer.observe(frame);
+                        });
+
+                        // Scrollspy & Nav Link Highlight logic
+                        const sections = document.querySelectorAll('section[id], footer[id], div[id="about"]');
+                        const navLinks = document.querySelectorAll('#nav-links a');
+
+                        function activateNavLink() {
+                                let scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
+                                // Offset to activate link slightly before the section reaches the top
+                                scrollPos += 180;
+
+                                let activeSectionId = 'home';
+
+                                sections.forEach(section => {
+                                        const sectionTop = section.offsetTop;
+                                        const sectionHeight = section.offsetHeight;
+                                        const sectionId = section.getAttribute('id');
+
+                                        // Special case for about-bottom target
+                                        if (sectionId === 'about') {
+                                                // If we are near the bottom of the page, activate About
+                                                if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 60) {
+                                                        activeSectionId = 'about';
+                                                }
+                                        } else if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                                                activeSectionId = sectionId;
+                                        }
+                                });
+
+                                // Fallback for contact/about at bottom of page
+                                if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 60) {
+                                        activeSectionId = 'about';
+                                }
+
+                                navLinks.forEach(link => {
+                                        const href = link.getAttribute('href');
+                                        if (href === `#${activeSectionId}`) {
+                                                link.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+                                                link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                                        } else {
+                                                link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                                                link.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+                                        }
+                                });
+                        }
+
+                        window.addEventListener('scroll', activateNavLink);
+                        window.addEventListener('resize', activateNavLink);
+                        activateNavLink();
+
+                        // Add smooth scroll behavior and manual highlight click override
+                        navLinks.forEach(link => {
+                                link.addEventListener('click', function(e) {
+                                        const targetId = this.getAttribute('href');
+                                        if (targetId.startsWith('#')) {
+                                                const targetElement = document.querySelector(targetId);
+                                                if (targetElement) {
+                                                        e.preventDefault();
+                                                        if (targetId === '#about') {
+                                                                window.scrollTo({
+                                                                        top: document.documentElement.scrollHeight,
+                                                                        behavior: 'smooth'
+                                                                });
+                                                        } else {
+                                                                const navbarHeight = document.querySelector('nav').offsetHeight || 80;
+                                                                window.scrollTo({
+                                                                        top: targetElement.offsetTop - navbarHeight + 10,
+                                                                        behavior: 'smooth'
+                                                                });
+                                                        }
+                                                        
+                                                        // Manually set active class
+                                                        navLinks.forEach(l => {
+                                                                l.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                                                                l.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+                                                        });
+                                                        this.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+                                                        this.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                                                }
+                                        }
+                                });
+                        });
+                });
+        </script>
+</body>
+
+</html>
