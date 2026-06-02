@@ -185,6 +185,35 @@
                 /* 3D Perspective card-flip effects */
                 .service-card-wrapper {
                         perspective: 1200px;
+                        will-change: transform;
+                        -webkit-transform: translateZ(0);
+                        transform: translateZ(0);
+                        opacity: 0;
+                        transform: translateY(24px);
+                        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+                }
+
+                .service-card-wrapper.visible {
+                        opacity: 1;
+                        transform: translateY(0);
+                }
+
+                .service-card-wrapper.visible:not(.flipped):hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 12px 36px rgba(241, 168, 10, 0.18);
+                }
+
+                .service-card-wrapper.visible:not(.flipped):hover .service-card-front {
+                        border-color: rgba(241, 168, 10, 0.5);
+                }
+
+                .service-card-wrapper.visible:not(.flipped):active {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 20px rgba(241, 168, 10, 0.2);
+                }
+
+                .service-card-front {
+                        transition: border-color 0.3s ease;
                 }
 
                 .service-card-inner {
@@ -301,6 +330,157 @@
                 .film-wave:nth-child(10) {
                         animation-delay: -13.5s;
                 }
+
+                /* Mobile nav toggle styling */
+                @media (max-width: 768px) {
+                        .mobile-nav-toggle {
+                                display: none !important;
+                        }
+                }
+
+                /* Navbar scroll styling */
+                nav {
+                        background: transparent !important;
+                        transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease !important;
+                }
+
+                nav.scrolled {
+                        background: rgba(10, 10, 10, 0.88) !important;
+                        backdrop-filter: blur(12px) !important;
+                        -webkit-backdrop-filter: blur(12px) !important;
+                        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4) !important;
+                }
+
+                /* Nav links gold underline animation */
+                #nav-links a {
+                        position: relative;
+                        text-decoration: none;
+                }
+
+                #nav-links a::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -3px;
+                        left: 0;
+                        width: 100%;
+                        height: 1.5px;
+                        background: #f1a80a; /* gold */
+                        transform: scaleX(0);
+                        transform-origin: left center;
+                        transition: transform 0.3s ease;
+                }
+
+                #nav-links a:hover::after {
+                        transform: scaleX(1);
+                }
+
+                #nav-links a.text-primary::after {
+                        display: none;
+                }
+
+                /* Hero stagger fade-up & drawLine divider styling */
+                @keyframes fadeSlideUp {
+                        from {
+                                opacity: 0;
+                                transform: translateY(18px);
+                        }
+                        to {
+                                opacity: 1;
+                                transform: translateY(0);
+                        }
+                }
+
+                .hero-label {
+                        animation: fadeSlideUp 0.8s ease forwards;
+                        animation-delay: 0.1s;
+                        opacity: 0;
+                        position: relative;
+                }
+
+                @keyframes drawLine {
+                        from { transform: scaleX(0); }
+                        to   { transform: scaleX(1); }
+                }
+
+                .hero-label::after {
+                        content: '';
+                        display: block;
+                        width: 60px;
+                        height: 2px;
+                        background-color: #f1a80a;
+                        margin-top: 12px;
+                        transform-origin: left center;
+                        animation: drawLine 1s ease forwards;
+                        animation-delay: 0.25s;
+                        transform: scaleX(0);
+                }
+
+                .hero-title {
+                        animation: fadeSlideUp 0.8s ease forwards;
+                        animation-delay: 0.3s;
+                        opacity: 0;
+                }
+
+                .hero-stats {
+                        animation: fadeSlideUp 0.8s ease forwards;
+                        animation-delay: 0.5s;
+                        opacity: 0;
+                }
+
+                .hero-description {
+                        animation: fadeSlideUp 0.8s ease forwards;
+                        animation-delay: 0.65s;
+                        opacity: 0;
+                }
+
+                .hero-buttons {
+                        animation: fadeSlideUp 0.8s ease forwards;
+                        animation-delay: 0.8s;
+                        opacity: 0;
+                }
+
+                /* Ken Burns zoom styling for hero background image */
+                .hero-image-wrapper {
+                        overflow: hidden;
+                        position: absolute;
+                        inset: 0;
+                }
+
+                .hero-bg-img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        will-change: transform;
+                        animation: kenBurns 16s ease-in-out infinite alternate;
+                }
+
+                @keyframes kenBurns {
+                        from { transform: scale(1); }
+                        to   { transform: scale(1.06); }
+                }
+
+                /* CTA button hover arrow slide styling */
+                .btn-arrow-slide .material-symbols-outlined {
+                        display: inline-block;
+                        transition: transform 0.3s ease;
+                }
+
+                .btn-arrow-slide:hover .material-symbols-outlined {
+                        transform: translateX(5px);
+                }
+
+                .btn-arrow-slide:active .material-symbols-outlined {
+                        transform: translateX(3px);
+                }
+
+                /* Reduced motion accessibility */
+                @media (prefers-reduced-motion: reduce) {
+                        *, *::before, *::after {
+                                animation-duration: 0.01ms !important;
+                                animation-iteration-count: 1 !important;
+                                transition-duration: 0.01ms !important;
+                        }
+                }
         </style>
 </head>
 
@@ -322,7 +502,7 @@
                                 href="#about">About</a>
                 </div>
                 <div class="hidden md:flex">
-                        <a class="flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-body-md font-bold hover:bg-gray-200 transition-colors shadow-lg"
+                        <a class="btn-arrow-slide flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-body-md font-bold hover:bg-gray-200 transition-colors shadow-lg"
                                 href="#contact">
                                 Book Consultation
                                 <span class="bg-ember text-white rounded-full p-1 flex items-center justify-center">
@@ -330,7 +510,7 @@
                                 </span>
                         </a>
                 </div>
-                <button class="md:hidden text-on-surface" aria-label="Toggle Navigation Menu">
+                <button class="mobile-nav-toggle md:hidden text-on-surface" aria-label="Toggle Navigation Menu">
                         <span class="material-symbols-outlined">menu</span>
                 </button>
         </nav>
@@ -340,9 +520,9 @@
                 <section id="home"
                         class="min-h-screen relative flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-32 pb-24 overflow-hidden">
                         <!-- Background Image with Graduate Dark Scrim -->
-                        <div class="absolute inset-0 z-0">
+                        <div class="hero-image-wrapper absolute inset-0 z-0">
                                 <img alt="Cinematic luxury event lighting background"
-                                        class="w-full h-full object-cover object-center opacity-70"
+                                        class="hero-bg-img w-full h-full object-cover object-center opacity-70"
                                         src="images/Gemini_Generated_Image_2.png" />
                                 <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-[#050C1A]">
                                 </div>
@@ -354,44 +534,40 @@
                                 class="relative z-10 w-full max-w-container-max mx-auto grid grid-cols-4 md:grid-cols-12 gap-gutter items-center">
                                 <div class="col-span-4 md:col-span-8 flex flex-col items-start gap-6">
                                         <h2
-                                                class="font-headline-md text-headline-md text-primary-fixed-dim font-medium tracking-wide">
+                                                class="hero-label font-headline-md text-headline-md text-primary-fixed-dim font-medium tracking-wide">
                                                 Artistry in Execution</h2>
                                         <h1
-                                                class="font-display-lg text-display-lg md:text-[96px] md:leading-[100px] text-white font-bold max-w-3xl tracking-tight">
+                                                class="hero-title font-display-lg text-display-lg md:text-[96px] md:leading-[100px] text-white font-bold max-w-3xl tracking-tight">
                                                 Curating Luxury <br /> Celebrations
                                         </h1>
                                         <div
                                                 class="mt-8 md:mt-12 flex flex-col md:flex-row gap-8 items-start md:items-end justify-between w-full md:w-[120%]">
-                                                <div class="flex flex-wrap gap-8 md:gap-16 opacity-80">
+                                                <div class="hero-stats flex flex-wrap gap-8 md:gap-16 opacity-80">
                                                         <!-- Decorative Event Management Pillars -->
                                                         <div class="flex flex-col gap-2">
                                                                 <span
-                                                                        class="font-label-caps text-label-caps text-ember">#01
-                                                                        Planning</span>
+                                                                        class="font-label-caps text-label-caps text-ember"><span class="stat-counter" data-target="1">#01</span> Planning</span>
                                                                 <span
                                                                         class="font-body-md text-body-md text-on-surface font-medium">Flawless
                                                                         Logistics</span>
                                                         </div>
                                                         <div class="flex flex-col gap-2">
                                                                 <span
-                                                                        class="font-label-caps text-label-caps text-ember">#02
-                                                                        Production</span>
+                                                                        class="font-label-caps text-label-caps text-ember"><span class="stat-counter" data-target="2">#02</span> Production</span>
                                                                 <span
                                                                         class="font-body-md text-body-md text-on-surface font-medium">Cinematic
                                                                         Scenography</span>
                                                         </div>
                                                         <div class="flex flex-col gap-2">
                                                                 <span
-                                                                        class="font-label-caps text-label-caps text-ember">#03
-                                                                        Styling</span>
+                                                                        class="font-label-caps text-label-caps text-ember"><span class="stat-counter" data-target="3">#03</span> Styling</span>
                                                                 <span
                                                                         class="font-body-md text-body-md text-on-surface font-medium">Bespoke
                                                                         Floral &amp; Décor</span>
                                                         </div>
                                                         <div class="flex flex-col gap-2">
                                                                 <span
-                                                                        class="font-label-caps text-label-caps text-ember">#04
-                                                                        Hospitality</span>
+                                                                        class="font-label-caps text-label-caps text-ember"><span class="stat-counter" data-target="4">#04</span> Hospitality</span>
                                                                 <span
                                                                         class="font-body-md text-body-md text-on-surface font-medium">Impeccable
                                                                         Guest Service</span>
@@ -404,14 +580,14 @@
                                                                 class="font-headline-md text-headline-md text-white font-semibold leading-snug">
                                                                 Every detail, flawlessly orchestrated.</h3>
                                                         <p
-                                                                class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                                                class="hero-description font-body-md text-body-md text-on-surface-variant leading-relaxed">
                                                                 From concept design and architectural styling to
                                                                 gastronomy, entertainment, and production management. We
                                                                 craft extraordinary moments.</p>
                                                         <div
-                                                                class="flex flex-wrap gap-4 justify-start md:justify-end mt-4">
+                                                                class="hero-buttons flex flex-wrap gap-4 justify-start md:justify-end mt-4">
                                                                 <!-- Primary CTA -->
-                                                                <a class="group/btn relative inline-flex items-center justify-center gap-3 bg-ember text-white px-8 py-3.5 rounded-full font-body-md font-bold hover:bg-[#D97706] transition-all duration-300 shadow-[0_0_15px_rgba(232,162,23,0.3)] hover:shadow-[0_0_25px_rgba(232,162,23,0.5)]"
+                                                                <a class="btn-arrow-slide group/btn relative inline-flex items-center justify-center gap-3 bg-ember text-white px-8 py-3.5 rounded-full font-body-md font-bold hover:bg-[#D97706] transition-all duration-300 shadow-[0_0_15px_rgba(232,162,23,0.3)] hover:shadow-[0_0_25px_rgba(232,162,23,0.5)]"
                                                                         href="#contact">
                                                                         Book Consultation
                                                                         <span
@@ -1064,6 +1240,64 @@
                                         }
                                 });
                         });
+
+                        // Navbar scroll transition JS
+                        const navbar = document.querySelector('nav') || document.querySelector('.navbar') || document.querySelector('header');
+                        window.addEventListener('scroll', () => {
+                                if (window.scrollY > 80) {
+                                        navbar.classList.add('scrolled');
+                                } else {
+                                        navbar.classList.remove('scrolled');
+                                }
+                        });
+                        if (window.scrollY > 80) {
+                                navbar.classList.add('scrolled');
+                        }
+
+                        // Service cards intersection observer JS
+                        const serviceCardsList = document.querySelectorAll('.service-card-wrapper');
+                        const cardObserver = new IntersectionObserver((entries) => {
+                                entries.forEach((entry, i) => {
+                                        if (entry.isIntersecting) {
+                                                setTimeout(() => {
+                                                        entry.target.classList.add('visible');
+                                                }, i * 110);
+                                                cardObserver.unobserve(entry.target);
+                                        }
+                                });
+                        }, { threshold: 0.12 });
+
+                        serviceCardsList.forEach(card => cardObserver.observe(card));
+
+                        // Stat counters count-up animation JS
+                        function easeOutQuad(t) { return t * (2 - t); }
+
+                        function animateCounter(el, target, duration) {
+                                const start = performance.now();
+                                function update(now) {
+                                        const elapsed = now - start;
+                                        const progress = Math.min(elapsed / duration, 1);
+                                        const eased = easeOutQuad(progress);
+                                        const current = Math.round(eased * target);
+                                        el.textContent = '#' + String(current).padStart(2, '0');
+                                        if (progress < 1) requestAnimationFrame(update);
+                                }
+                                requestAnimationFrame(update);
+                        }
+
+                        const counterEls = document.querySelectorAll('.stat-counter');
+                        const counterObserver = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                        if (entry.isIntersecting) {
+                                                const el = entry.target;
+                                                const target = parseInt(el.getAttribute('data-target') || el.textContent.replace(/\D/g, ''), 10);
+                                                animateCounter(el, target, 900);
+                                                counterObserver.unobserve(el);
+                                        }
+                                });
+                        }, { threshold: 0.5 });
+
+                        counterEls.forEach(el => counterObserver.observe(el));
                 });
         </script>
 </body>
