@@ -155,8 +155,8 @@
                                                         }
                                                 ]
                                         }
-                                },
-                        },
+                                }
+                        }
                 }
         </script>
         <style>
@@ -186,30 +186,35 @@
                 .service-card-wrapper {
                         perspective: 1200px;
                         will-change: transform;
-                        -webkit-transform: translateZ(0);
-                        transform: translateZ(0);
+                        -webkit-transform: translateZ(0) translateY(24px);
+                        transform: translateZ(0) translateY(24px);
                         opacity: 0;
-                        transform: translateY(24px);
-                        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+                        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 .service-card-wrapper.visible {
                         opacity: 1;
-                        transform: translateY(0);
+                        transform: translateZ(0) translateY(0);
                 }
 
-                .service-card-wrapper.visible:not(.flipped):hover {
+                /* Add hover lift to the inner element instead: */
+                .service-card-wrapper.visible:not(.flipped):hover .service-card-inner {
                         transform: translateY(-5px);
+                        transition: transform 0.3s ease;
+                }
+
+                .service-card-wrapper.visible:not(.flipped):active .service-card-inner {
+                        transform: translateY(-2px);
+                        transition: transform 0.15s ease;
+                }
+
+                /* Keep the gold border and box-shadow on the wrapper — those don't conflict */
+                .service-card-wrapper.visible:not(.flipped):hover {
                         box-shadow: 0 12px 36px rgba(241, 168, 10, 0.18);
                 }
 
                 .service-card-wrapper.visible:not(.flipped):hover .service-card-front {
                         border-color: rgba(241, 168, 10, 0.5);
-                }
-
-                .service-card-wrapper.visible:not(.flipped):active {
-                        transform: translateY(-2px);
-                        box-shadow: 0 6px 20px rgba(241, 168, 10, 0.2);
                 }
 
                 .service-card-front {
@@ -220,7 +225,6 @@
                         position: relative;
                         width: 100%;
                         height: 420px;
-                        /* Uniform height across all screen layouts */
                         transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
                         transform-style: preserve-3d;
                 }
@@ -255,29 +259,6 @@
                         }
                 }
 
-                /* Very subtle translateY filmstrip waving motion */
-                @keyframes wave {
-                        0% {
-                                transform: translateY(0px) rotate(0deg);
-                        }
-
-                        25% {
-                                transform: translateY(-8px) rotate(-0.5deg);
-                        }
-
-                        50% {
-                                transform: translateY(0px) rotate(0deg);
-                        }
-
-                        75% {
-                                transform: translateY(8px) rotate(0.5deg);
-                        }
-
-                        100% {
-                                transform: translateY(0px) rotate(0deg);
-                        }
-                }
-
                 .animate-scroll-film {
                         animation: scroll-film 40s linear infinite;
                 }
@@ -285,50 +266,6 @@
                 /* The infinite carousel does NOT pause on hover, ensuring endless movie-like flow */
                 .film-container:hover .animate-scroll-film {
                         animation-play-state: running;
-                }
-
-                .film-wave {
-                        animation: wave 12s ease-in-out infinite;
-                }
-
-                .film-wave:nth-child(1) {
-                        animation-delay: 0s;
-                }
-
-                .film-wave:nth-child(2) {
-                        animation-delay: -1.5s;
-                }
-
-                .film-wave:nth-child(3) {
-                        animation-delay: -3s;
-                }
-
-                .film-wave:nth-child(4) {
-                        animation-delay: -4.5s;
-                }
-
-                .film-wave:nth-child(5) {
-                        animation-delay: -6s;
-                }
-
-                .film-wave:nth-child(6) {
-                        animation-delay: -7.5s;
-                }
-
-                .film-wave:nth-child(7) {
-                        animation-delay: -9s;
-                }
-
-                .film-wave:nth-child(8) {
-                        animation-delay: -10.5s;
-                }
-
-                .film-wave:nth-child(9) {
-                        animation-delay: -12s;
-                }
-
-                .film-wave:nth-child(10) {
-                        animation-delay: -13.5s;
                 }
 
                 /* Mobile nav toggle styling */
@@ -391,10 +328,28 @@
                 }
 
                 .hero-label {
-                        animation: fadeSlideUp 0.8s ease forwards;
-                        animation-delay: 0.1s;
-                        opacity: 0;
                         position: relative;
+                        background: linear-gradient(
+                                90deg,
+                                #f5c453 0%,
+                                #f5c453 40%,
+                                #ffffff 50%,
+                                #f5c453 60%,
+                                #f5c453 100%
+                        );
+                        background-size: 200% auto;
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        color: #f5c453; /* fallback */
+                        opacity: 0;
+                        animation: fadeSlideUp 0.8s ease forwards, shimmerSweep 5s ease-in-out 2s infinite;
+                }
+
+                @keyframes shimmerSweep {
+                        0%   { background-position: 200% center; }
+                        50%  { background-position: 0% center; }
+                        100% { background-position: -200% center; }
                 }
 
                 @keyframes drawLine {
@@ -444,6 +399,10 @@
                         overflow: hidden;
                         position: absolute;
                         inset: 0;
+                        will-change: transform;
+                        isolation: isolate;
+                        transform: translateZ(0);
+                        -webkit-transform: translateZ(0);
                 }
 
                 .hero-bg-img {
@@ -473,18 +432,93 @@
                         transform: translateX(3px);
                 }
 
-                /* Reduced motion accessibility */
+                /* Scroll progress bar (Improvement 1) */
+                #scroll-progress-bar {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        height: 3px;
+                        width: 0%;
+                        background: linear-gradient(90deg, #E8A217, #f5c453);
+                        z-index: 9999;
+                        transition: width 0.1s linear;
+                        pointer-events: none;
+                }
+
+                /* Word reveal styling (Improvement 3) */
+                .word-reveal {
+                        display: inline-block;
+                        opacity: 0;
+                        transform: translateY(14px);
+                        transition: opacity 0.5s ease, transform 0.5s ease;
+                }
+
+                .word-reveal.word-visible {
+                        opacity: 1;
+                        transform: translateY(0);
+                }
+
+                /* Icon glow pulse on service card hover (Improvement 4) */
+                .service-card-wrapper:not(.flipped):hover .material-symbols-outlined.text-primary {
+                        filter: drop-shadow(0 0 8px rgba(241, 168, 10, 0.7));
+                        transition: filter 0.3s ease;
+                }
+
+                .service-card-wrapper .material-symbols-outlined.text-primary {
+                        transition: filter 0.3s ease;
+                        filter: drop-shadow(0 0 0px rgba(241, 168, 10, 0));
+                }
+
+                /* Footer social icon hover lift (Improvement 6) */
+                footer a .material-symbols-outlined {
+                        display: inline-block;
+                        transition: transform 0.25s ease;
+                }
+
+                footer a:hover .material-symbols-outlined {
+                        transform: translateY(-3px);
+                }
+
+                /* Visual Narrative label pulse (Improvement 7) */
+                @keyframes singlePulse {
+                        0%   { transform: scale(1); }
+                        40%  { transform: scale(1.08); }
+                        100% { transform: scale(1); }
+                }
+
+                .visual-narrative-label {
+                        display: inline-block;
+                }
+
+                .visual-narrative-label.pulsed {
+                        animation: singlePulse 0.6s ease forwards;
+                }
+
+                /* Reduced motion accessibility (Improvement 8) */
                 @media (prefers-reduced-motion: reduce) {
                         *, *::before, *::after {
                                 animation-duration: 0.01ms !important;
                                 animation-iteration-count: 1 !important;
                                 transition-duration: 0.01ms !important;
                         }
+
+                        /* Ensure shimmer text still shows its color (background-clip text needs override) */
+                        .hero-label {
+                                -webkit-text-fill-color: #f5c453;
+                        }
+
+                        /* Word reveal: show all words instantly */
+                        .word-reveal {
+                                opacity: 1 !important;
+                                transform: none !important;
+                                transition: none !important;
+                        }
                 }
         </style>
 </head>
 
 <body class="antialiased overflow-x-hidden selection:bg-primary selection:text-on-primary">
+        <div id="scroll-progress-bar"></div>
         <!-- TopNavBar: High-end floating glassmorphic navbar with Somganesh branding -->
         <nav
                 class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-gutter max-w-container-max mx-auto bg-[#050C1A]/40 backdrop-blur-md border-b border-white/5">
@@ -636,8 +670,8 @@
                                                 tabindex="0"
                                                 aria-label="Event Curation Service - Click to flip for gallery">
                                                 <div class="service-card-inner">
-                                                        <!-- Front Side -->
-                                                        <div
+                                                         <!-- Front Side -->
+                                                         <div
                                                                 class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
                                                                 <div
                                                                         class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -664,6 +698,7 @@
                                                                 class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
                                                                 <img alt="Signature Event Curation"
                                                                         class="w-full h-full object-cover"
+                                                                        loading="lazy"
                                                                         src="images/image_1.png" />
                                                         </div>
                                                 </div>
@@ -674,8 +709,8 @@
                                                 tabindex="0"
                                                 aria-label="Venue Styling Service - Click to flip for gallery">
                                                 <div class="service-card-inner">
-                                                        <!-- Front Side -->
-                                                        <div
+                                                         <!-- Front Side -->
+                                                         <div
                                                                 class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
                                                                 <div
                                                                         class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -702,6 +737,7 @@
                                                                 class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
                                                                 <img alt="Grand Venue Transformation"
                                                                         class="w-full h-full object-cover"
+                                                                        loading="lazy"
                                                                         src="images/image_4.png" />
                                                         </div>
                                                 </div>
@@ -712,8 +748,8 @@
                                                 tabindex="0"
                                                 aria-label="Wedding Planning Service - Click to flip for gallery">
                                                 <div class="service-card-inner">
-                                                        <!-- Front Side -->
-                                                        <div
+                                                         <!-- Front Side -->
+                                                         <div
                                                                 class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
                                                                 <div
                                                                         class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -740,6 +776,7 @@
                                                                 class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
                                                                 <img alt="Royal Weddings &amp; Vivah"
                                                                         class="w-full h-full object-cover"
+                                                                        loading="lazy"
                                                                         src="images/image_8.png" />
                                                         </div>
                                                 </div>
@@ -750,8 +787,8 @@
                                                 tabindex="0"
                                                 aria-label="Divine Deity Decor Service - Click to flip for gallery">
                                                 <div class="service-card-inner">
-                                                        <!-- Front Side -->
-                                                        <div
+                                                         <!-- Front Side -->
+                                                         <div
                                                                 class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
                                                                 <div
                                                                         class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -778,6 +815,7 @@
                                                                 class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
                                                                 <img alt="Divine Deity Decor"
                                                                         class="w-full h-full object-cover"
+                                                                        loading="lazy"
                                                                         src="images/image_12.jpeg" />
                                                         </div>
                                                 </div>
@@ -788,8 +826,8 @@
                                                 tabindex="0"
                                                 aria-label="Birthday Celebrations Service - Click to flip for gallery">
                                                 <div class="service-card-inner">
-                                                        <!-- Front Side -->
-                                                        <div
+                                                         <!-- Front Side -->
+                                                         <div
                                                                 class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
                                                                 <div
                                                                         class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -816,6 +854,7 @@
                                                                 class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
                                                                 <img alt="Milestone Celebrations"
                                                                         class="w-full h-full object-cover"
+                                                                        loading="lazy"
                                                                         src="images/image_13.jpeg" />
                                                         </div>
                                                 </div>
@@ -826,8 +865,8 @@
                                                 tabindex="0"
                                                 aria-label="Royal Festive Galas Service - Click to flip for gallery">
                                                 <div class="service-card-inner">
-                                                        <!-- Front Side -->
-                                                        <div
+                                                         <!-- Front Side -->
+                                                         <div
                                                                 class="service-card-front bg-surface-container-low border border-white/5 p-8 flex flex-col justify-between overflow-hidden group">
                                                                 <div
                                                                         class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -854,6 +893,7 @@
                                                                 class="service-card-back bg-surface-container-high border border-white/10 overflow-hidden">
                                                                 <img alt="Royal Festive Galas"
                                                                         class="w-full h-full object-cover"
+                                                                        loading="lazy"
                                                                         src="images/image_15.PNG" />
                                                         </div>
                                                 </div>
@@ -868,7 +908,7 @@
                         id="portfolio">
                         <div
                                 class="max-w-container-max mx-auto mb-16 flex flex-col items-center text-center gap-4 relative z-10 px-margin-mobile md:px-margin-desktop">
-                                <span class="font-label-caps text-label-caps text-ember">Visual Narrative</span>
+                                <span class="font-label-caps text-label-caps text-ember visual-narrative-label">Visual Narrative</span>
                                 <h2 class="font-headline-lg text-headline-lg text-white">Our Cinematic Portfolio</h2>
                                 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">An endless camera
                                         roll of luxury and high-impact events handled by our firm.</p>
@@ -887,48 +927,56 @@
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
                                                 <img alt="Somganesh Portfolio Item 1"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_16.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
                                                 <img alt="Somganesh Portfolio Item 2"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_2.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
                                                 <img alt="Somganesh Portfolio Item 3"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_5.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 4"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_6.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 5"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_7.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 6"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_10.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 7"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_17.jpeg" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 8"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_19.jpeg" />
                                         </div>
 
@@ -937,51 +985,59 @@
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 1 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_16.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 2 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_2.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 3 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_5.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 4 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_6.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 5 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_7.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 6 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_10.png" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 7 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_17.jpeg" />
                                         </div>
                                         <div
                                                 class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
                                                 <img alt="Somganesh Portfolio Item 8 Duplicate"
                                                         class="w-full h-full object-cover transition-transform duration-700"
+                                                        loading="lazy"
                                                         src="images/image_19.jpeg" />
                                         </div>
-                                </div>>
+                                </div>
 
                                 <!-- Bottom Sprocket Holes -->
                                 <div
@@ -1254,11 +1310,15 @@
                                 navbar.classList.add('scrolled');
                         }
 
-                        // Service cards intersection observer JS
+                        // Service cards intersection observer JS — stagger fixed
                         const serviceCardsList = document.querySelectorAll('.service-card-wrapper');
+                        const cardIndexMap = new Map();
+                        serviceCardsList.forEach((card, i) => cardIndexMap.set(card, i));
+
                         const cardObserver = new IntersectionObserver((entries) => {
-                                entries.forEach((entry, i) => {
+                                entries.forEach((entry) => {
                                         if (entry.isIntersecting) {
+                                                const i = cardIndexMap.get(entry.target) || 0;
                                                 setTimeout(() => {
                                                         entry.target.classList.add('visible');
                                                 }, i * 110);
@@ -1298,6 +1358,78 @@
                         }, { threshold: 0.5 });
 
                         counterEls.forEach(el => counterObserver.observe(el));
+
+                        // Scroll progress bar
+                        const progressBar = document.getElementById('scroll-progress-bar');
+                        window.addEventListener('scroll', () => {
+                                const scrollTop = window.scrollY;
+                                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                                progressBar.style.width = progress + '%';
+                        }, { passive: true });
+
+                        // Word-by-word split reveal for the about heading
+                        const aboutHeading = document.querySelector('#services .font-display-lg');
+                        if (aboutHeading) {
+                                const words = aboutHeading.textContent.trim().split(/\s+/);
+                                aboutHeading.innerHTML = words
+                                        .map((word, i) =>
+                                                `<span class="word-reveal" style="transition-delay:${0.05 * i}s; animation-delay:${0.05 * i}s">${word}</span>`
+                                        )
+                                        .join(' ');
+
+                                const wordObserver = new IntersectionObserver((entries) => {
+                                        entries.forEach(entry => {
+                                                if (entry.isIntersecting) {
+                                                        entry.target.querySelectorAll('.word-reveal').forEach(span => {
+                                                                span.classList.add('word-visible');
+                                                        });
+                                                        wordObserver.unobserve(entry.target);
+                                                }
+                                        });
+                                }, { threshold: 0.2 });
+
+                                wordObserver.observe(aboutHeading);
+                        }
+
+                        // Magnetic button effect — desktop only
+                        if (window.matchMedia('(pointer: fine)').matches) {
+                                const magnetBtns = document.querySelectorAll('.btn-arrow-slide');
+                                magnetBtns.forEach(btn => {
+                                        btn.addEventListener('mousemove', (e) => {
+                                                const rect = btn.getBoundingClientRect();
+                                                const btnCX = rect.left + rect.width / 2;
+                                                const btnCY = rect.top + rect.height / 2;
+                                                const dx = e.clientX - btnCX;
+                                                const dy = e.clientY - btnCY;
+                                                const dist = Math.sqrt(dx * dx + dy * dy);
+                                                const maxDist = 80;
+                                                if (dist < maxDist) {
+                                                        const pull = (1 - dist / maxDist) * 0.35;
+                                                        btn.style.transform = `translate(${dx * pull}px, ${dy * pull}px)`;
+                                                }
+                                        });
+                                        btn.addEventListener('mouseleave', () => {
+                                                btn.style.transform = 'translate(0, 0)';
+                                                btn.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                                                setTimeout(() => { btn.style.transition = ''; }, 400);
+                                        });
+                                });
+                        }
+
+                        // Visual Narrative label pulse
+                        const vnLabel = document.querySelector('.visual-narrative-label');
+                        if (vnLabel) {
+                                const vnObserver = new IntersectionObserver((entries) => {
+                                        entries.forEach(entry => {
+                                                if (entry.isIntersecting) {
+                                                        entry.target.classList.add('pulsed');
+                                                        vnObserver.unobserve(entry.target);
+                                                }
+                                        });
+                                }, { threshold: 0.5 });
+                                vnObserver.observe(vnLabel);
+                        }
                 });
         </script>
 </body>
