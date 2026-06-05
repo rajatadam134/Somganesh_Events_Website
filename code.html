@@ -184,25 +184,7 @@
 
 
 
-                /* Infinite linear marquee scroll animation for camera roll */
-                @keyframes scroll-film {
-                        0% {
-                                transform: translateX(0);
-                        }
 
-                        100% {
-                                transform: translateX(-50%);
-                        }
-                }
-
-                .animate-scroll-film {
-                        animation: scroll-film 40s linear infinite;
-                }
-
-                /* The infinite carousel does NOT pause on hover, ensuring endless movie-like flow */
-                .film-container:hover .animate-scroll-film {
-                        animation-play-state: running;
-                }
 
                 /* Mobile nav toggle styling */
                 @media (max-width: 768px) {
@@ -601,15 +583,7 @@
                   padding-left: 68px;
                 }
 
-                /* Description */
-                .accordion-panel-desc {
-                  font-family: 'Hanken Grotesk', sans-serif;
-                  font-size: 14px;
-                  color: rgba(226, 232, 240, 0.8);
-                  line-height: 1.6;
-                  padding-left: 68px;
-                  max-width: 480px;
-                }
+
 
                 /* Tap hint shown in collapsed panels (rotated vertical text) */
                 .accordion-panel-tap-hint {
@@ -707,10 +681,7 @@
                     padding-left: 58px;
                   }
 
-                  .accordion-panel-desc {
-                    font-size: 13px;
-                    padding-left: 58px;
-                  }
+
 
                   .accordion-panel-content {
                     padding: 18px 20px;
@@ -754,6 +725,279 @@
                                 animation: none !important;
                         }
                 }
+
+/* ============================================
+   PREMIUM 3D CAROUSEL — Portfolio Section
+   ============================================ */
+
+.carousel-section {
+    background-color: #0d0d0d;
+}
+
+.carousel-view-container {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    overflow: hidden;
+}
+
+.carousel-cards-track {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 440px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+}
+
+.carousel-card {
+    position: absolute;
+    width: 65%;
+    max-width: 620px;
+    height: 100%;
+    left: 50%;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    will-change: transform, opacity, filter;
+    transition: transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+}
+
+.carousel-card.active {
+    transform: translate3d(-50%, 0, 0) scale(1);
+    opacity: 1;
+    z-index: 10;
+    filter: blur(0px) brightness(1);
+    box-shadow: 0 20px 40px rgba(241, 168, 10, 0.25), 0 0 0 1px rgba(241, 168, 10, 0.15);
+    pointer-events: auto;
+}
+
+.carousel-card.active:hover {
+    transform: translate3d(-50%, -8px, 0) scale(1.02);
+    box-shadow: 0 30px 60px rgba(241, 168, 10, 0.35), 0 0 0 1px rgba(241, 168, 10, 0.25);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-card.active:hover .carousel-card-bg {
+    transform: scale(1.15);
+}
+
+.carousel-card.prev {
+    transform: translate3d(-108%, 0, -120px) scale(0.8) rotateY(15deg);
+    opacity: 0.5;
+    z-index: 5;
+    filter: blur(3px) brightness(0.45);
+    pointer-events: auto;
+}
+
+.carousel-card.next {
+    transform: translate3d(8%, 0, -120px) scale(0.8) rotateY(-15deg);
+    opacity: 0.5;
+    z-index: 5;
+    filter: blur(3px) brightness(0.45);
+    pointer-events: auto;
+}
+
+.carousel-card.hidden-left {
+    transform: translate3d(-170%, 0, -250px) scale(0.65);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.carousel-card.hidden-right {
+    transform: translate3d(70%, 0, -250px) scale(0.65);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.carousel-card-bg-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.carousel-card-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.carousel-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13, 13, 13, 0.95) 0%, rgba(13, 13, 13, 0.45) 50%, transparent 100%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 36px;
+}
+
+.carousel-card-content {
+    position: relative;
+    z-index: 3;
+    color: #ffffff;
+}
+
+.carousel-card .stagger-el {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-card.active .stagger-el {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.carousel-card:not(.active) .stagger-el {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-card.active .stagger-1 { transition-delay: 200ms; }
+.carousel-card.active .stagger-2 { transition-delay: 320ms; }
+.carousel-card.active .stagger-3 { transition-delay: 440ms; }
+.carousel-card.active .stagger-4 { transition-delay: 560ms; }
+
+.carousel-progress-wrapper {
+    position: relative;
+    width: 65%;
+    max-width: 620px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    margin-top: 28px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.carousel-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #E8A217, #f5c453);
+    box-shadow: 0 0 10px rgba(241, 168, 10, 0.6);
+    border-radius: 2px;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-arrow:hover {
+    background: rgba(241, 168, 10, 0.15);
+    border-color: rgba(241, 168, 10, 0.6);
+    box-shadow: 0 0 20px rgba(241, 168, 10, 0.35);
+    color: #f1a80a;
+}
+
+.carousel-arrow.arrow-left { left: 3%; }
+.carousel-arrow.arrow-right { right: 3%; }
+
+.carousel-arrow .material-symbols-outlined {
+    font-size: 26px;
+}
+
+.carousel-dots-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    z-index: 5;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-dot.active {
+    width: 28px;
+    height: 8px;
+    border-radius: 4px;
+    background: #f1a80a;
+    box-shadow: 0 0 8px rgba(241, 168, 10, 0.5);
+}
+
+/* Carousel responsive */
+@media (max-width: 1024px) {
+    .carousel-card { width: 75%; }
+    .carousel-progress-wrapper { width: 75%; }
+    .carousel-card.prev { transform: translate3d(-102%, 0, -100px) scale(0.8) rotateY(10deg); }
+    .carousel-card.next { transform: translate3d(2%, 0, -100px) scale(0.8) rotateY(-10deg); }
+}
+
+@media (max-width: 768px) {
+    .carousel-view-container { height: 520px; }
+    .carousel-cards-track { height: 420px; }
+    .carousel-card {
+        width: 90%;
+        max-width: 500px;
+        left: 5%;
+    }
+    .carousel-card.active {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+        z-index: 10;
+        filter: none;
+    }
+    .carousel-card.prev,
+    .carousel-card.next,
+    .carousel-card.hidden-left,
+    .carousel-card.hidden-right {
+        transform: translate3d(0, 0, -100px) scale(0.9);
+        opacity: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+    .carousel-progress-wrapper { width: 90%; }
+    .carousel-arrow { width: 44px; height: 44px; }
+    .carousel-arrow.arrow-left { left: 2%; }
+    .carousel-arrow.arrow-right { right: 2%; }
+    .carousel-card-overlay { padding: 24px; }
+}
         </style>
 </head>
 
@@ -915,7 +1159,6 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Signature Event Curation</h3>
-                                      <p class="accordion-panel-desc">Curating bespoke narratives for high-profile galas, elite receptions, and landmark celebrations, customized to reflect your family's heritage and grand vision.</p>
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Grand Venue Transformation">
@@ -925,7 +1168,6 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Grand Venue Transformation</h3>
-                                      <p class="accordion-panel-desc">Transforming elite venues into palatial marvels. Exquisite spatial layouts, majestic structures, luxury fabrics, and international-grade floral design.</p>
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Royal Weddings and Vivah">
@@ -935,7 +1177,6 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Royal Weddings &amp; Vivah</h3>
-                                      <p class="accordion-panel-desc">Orchestrating majestic multi-day Indian weddings. From grand destination logistics to bespoke design, crafting a fairytale celebration for your union.</p>
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Divine Deity Decor">
@@ -945,7 +1186,6 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Divine Deity Decor</h3>
-                                      <p class="accordion-panel-desc">Celestial decorations for temples, sacred shrines, and deity statues. Melding divine tradition with opulent aesthetics for auspicious family occasions.</p>
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Milestone Celebrations">
@@ -955,7 +1195,6 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Milestone Celebrations</h3>
-                                      <p class="accordion-panel-desc">Spectacular milestone birthdays and anniversary celebrations. Dazzling thematic concepts, premium guest hospitality, and high-production entertainment.</p>
                                     </div>
                                   </div>
 
@@ -971,7 +1210,6 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Royal Festive Galas</h3>
-                                      <p class="accordion-panel-desc">Bespoke styling for high-energy Sangeet nights, vibrant Mehendi festivals, and opulent Diwali or Ganesh Chaturthi galas, rich in cultural elegance.</p>
                                     </div>
                                   </div>
 
@@ -987,7 +1225,6 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Scenic Arch &amp; Stage Design</h3>
-                                      <p class="accordion-panel-desc">Designing photogenic outdoor stages and scenic arches. Melding elegant structural arches with lush botanical backdrops for breathtaking event frames.</p>
                                     </div>
                                   </div>
 
@@ -1003,155 +1240,126 @@
                                     <span class="accordion-panel-tap-hint">View</span>
                                     <div class="accordion-panel-content">
                                       <h3 class="accordion-panel-title">Elite Backdrop Design</h3>
-                                      <p class="accordion-panel-desc">Creating opulent indoor seating arrangements and romantic backdrops for intimate engagements, Roka ceremonies, and luxury portraits.</p>
                                     </div>
                                   </div>
-
-                                </div>
                         </div>
                 </section>
 
-                <section class="py-section-gap px-0 bg-[#050C1A] overflow-hidden relative border-t border-white/5"
-                        id="portfolio">
-                        <div
-                                class="max-w-container-max mx-auto mb-16 flex flex-col items-center text-center gap-4 relative z-10 px-margin-mobile md:px-margin-desktop">
-                                <span class="font-label-caps text-label-caps text-ember visual-narrative-label">Visual Narrative</span>
-                                <h2 class="font-headline-lg text-headline-lg text-white">Our Cinematic Portfolio</h2>
-                                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">An endless camera
-                                        roll of luxury and high-impact events handled by our firm.</p>
-                        </div>
+<!-- Portfolio: Premium 3D Card Carousel Section -->
+<section class="carousel-section py-24 px-4 overflow-hidden relative border-t border-white/5"
+        id="portfolio">
+        <div
+                class="max-w-container-max mx-auto mb-12 flex flex-col items-center text-center gap-4 relative z-10 px-margin-mobile md:px-margin-desktop">
+                <span class="font-label-caps text-label-caps text-ember visual-narrative-label">Visual Narrative</span>
+                <h2 class="font-headline-lg text-headline-lg text-white">Our Cinematic Portfolio</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">A premium showcase of luxury and high-impact events curated by our firm.</p>
+        </div>
 
-                        <!-- Endless Moving Camera Roll Marquee (Hover-pause disabled) -->
-                        <div class="w-full relative bg-black py-24 overflow-hidden film-container">
-                                <!-- Top Sprocket Holes -->
-                                <div
-                                        class="absolute top-0 left-0 right-0 h-8 bg-[repeating-linear-gradient(90deg,#050C1A,#050C1A_20px,transparent_20px,transparent_32px)] border-b border-white/10 z-20 w-[200%]">
-                                </div>
-                                <!-- Infinite Scrolling Film Track -->
-                                <div class="flex gap-8 animate-scroll-film w-max px-4 py-16 items-center">
-                                        <!-- Sequence 1 -->
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
-                                                <img alt="Somganesh Portfolio Item 1"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_16.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
-                                                <img alt="Somganesh Portfolio Item 2"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_2.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60 scale-100">
-                                                <img alt="Somganesh Portfolio Item 3"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_5.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 4"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_6.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 5"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_7.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 6"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_10.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 7"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_17.jpeg" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 8"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_19.jpeg" />
-                                        </div>
+        <!-- 3D Carousel Component Container -->
+        <div class="carousel-view-container" id="carousel-view">
+                <!-- Navigation Arrows -->
+                <button class="carousel-arrow arrow-left" id="carousel-prev" aria-label="Previous Slide">
+                        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+                </button>
+                <button class="carousel-arrow arrow-right" id="carousel-next" aria-label="Next Slide">
+                        <span class="material-symbols-outlined">arrow_forward_ios</span>
+                </button>
 
-                                        <!-- Sequence 2 (Identical Duplicate for seamless infinite scroll) -->
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 1 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_16.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 2 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_2.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 3 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_5.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 4 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_6.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 5 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_7.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[4/3] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 6 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_10.png" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[16/9] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 7 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_17.jpeg" />
-                                        </div>
-                                        <div
-                                                class="film-wave w-[300px] md:w-[450px] aspect-[3/4] rounded-md overflow-hidden border-[8px] border-[#111] shadow-2xl flex-shrink-0 transition-all duration-500 opacity-60">
-                                                <img alt="Somganesh Portfolio Item 8 Duplicate"
-                                                        class="w-full h-full object-cover transition-transform duration-700"
-                                                        loading="lazy"
-                                                        src="images/image_19.jpeg" />
-                                        </div>
-                                </div>
+                <!-- Card Track -->
+                <div class="carousel-cards-track" id="carousel-track">
 
-                                <!-- Bottom Sprocket Holes -->
-                                <div
-                                        class="absolute bottom-0 left-0 right-0 h-8 bg-[repeating-linear-gradient(90deg,#050C1A,#050C1A_20px,transparent_20px,transparent_32px)] border-t border-white/10 z-20 w-[200%]">
+                        <!-- Card 1 -->
+                        <div class="carousel-card active" data-index="0">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Signature Event Curation"
+                                                class="carousel-card-bg"
+                                                src="images/image_16.png" loading="lazy" />
                                 </div>
                         </div>
-                </section>
+
+                        <!-- Card 2 -->
+                        <div class="carousel-card next" data-index="1">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Grand Venue Transformation"
+                                                class="carousel-card-bg"
+                                                src="images/image_2.png" loading="lazy" />
+                                </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="carousel-card hidden-right" data-index="2">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Royal Weddings and Vivah"
+                                                class="carousel-card-bg"
+                                                src="images/image_5.png" loading="lazy" />
+                                </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="carousel-card hidden-right" data-index="3">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Divine Deity Decor"
+                                                class="carousel-card-bg"
+                                                src="images/image_6.png" loading="lazy" />
+                                </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="carousel-card hidden-right" data-index="4">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Milestone Celebrations"
+                                                class="carousel-card-bg"
+                                                src="images/image_7.png" loading="lazy" />
+                                </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="carousel-card prev" data-index="5">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Royal Festive Galas"
+                                                class="carousel-card-bg"
+                                                src="images/image_10.png" loading="lazy" />
+                                </div>
+                        </div>
+
+                        <!-- Card 7 -->
+                        <div class="carousel-card hidden-right" data-index="6">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Scenic Arch and Stage Design"
+                                                class="carousel-card-bg"
+                                                src="images/image_17.jpeg" loading="lazy" />
+                                </div>
+                        </div>
+
+                        <!-- Card 8 -->
+                        <div class="carousel-card hidden-right" data-index="7">
+                                <div class="carousel-card-bg-wrap">
+                                        <img alt="Elite Backdrop Design"
+                                                class="carousel-card-bg"
+                                                src="images/image_19.jpeg" loading="lazy" />
+                                </div>
+                        </div>
+
+                </div>
+
+                <!-- Progress Bar under the active card -->
+                <div class="carousel-progress-wrapper">
+                        <div class="carousel-progress-bar" id="carousel-progress"></div>
+                </div>
+
+                <!-- Dot Indicators — 8 dots for 8 cards -->
+                <div class="carousel-dots-container" id="carousel-dots">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                        <span class="carousel-dot" data-slide="1"></span>
+                        <span class="carousel-dot" data-slide="2"></span>
+                        <span class="carousel-dot" data-slide="3"></span>
+                        <span class="carousel-dot" data-slide="4"></span>
+                        <span class="carousel-dot" data-slide="5"></span>
+                        <span class="carousel-dot" data-slide="6"></span>
+                        <span class="carousel-dot" data-slide="7"></span>
+                </div>
+        </div>
+</section>
                 
                 <!-- About target for bottom scroll navigation -->
                 <div id="about" class="scroll-mt-24"></div>
@@ -1282,35 +1490,137 @@
         <script>
                 document.addEventListener("DOMContentLoaded", function () {
 
+// ============================================
+// PREMIUM 3D CAROUSEL SCRIPT
+// ============================================
+const carouselView = document.getElementById('carousel-view');
+const carouselTrack = document.getElementById('carousel-track');
+const carouselCards = carouselTrack ? Array.from(carouselTrack.querySelectorAll('.carousel-card')) : [];
+const carouselPrevBtn = document.getElementById('carousel-prev');
+const carouselNextBtn = document.getElementById('carousel-next');
+const carouselProgressBar = document.getElementById('carousel-progress');
+const carouselDotsContainer = document.getElementById('carousel-dots');
+const carouselDots = carouselDotsContainer ? Array.from(carouselDotsContainer.querySelectorAll('.carousel-dot')) : [];
 
-                        // Intersection Observer for camera roll scrolling effects (scale and opacity on focus)
-                        const frames = document.querySelectorAll('.film-wave');
+if (carouselCards.length > 0) {
+    let currentSlideIndex = 0;
+    const totalSlidesCount = carouselCards.length;
+    let isHoveringCarousel = false;
+    let progressTime = 0;
+    const durationLimit = 4000;
+    let lastTimestamp = null;
+    let progressFrameId = null;
 
-                        const observerOptions = {
-                                root: null,
-                                rootMargin: '0px',
-                                threshold: 0.5
-                        };
+    function progressLoop(timestamp) {
+        if (!lastTimestamp) lastTimestamp = timestamp;
+        const delta = timestamp - lastTimestamp;
+        lastTimestamp = timestamp;
 
-                        const observer = new IntersectionObserver((entries) => {
-                                entries.forEach(entry => {
-                                        if (entry.isIntersecting) {
-                                                entry.target.classList.add('scale-110', 'opacity-100', 'z-10');
-                                                entry.target.classList.remove('opacity-60', 'scale-100');
-                                                const img = entry.target.querySelector('img');
-                                                if (img) img.classList.add('scale-105');
-                                        } else {
-                                                entry.target.classList.remove('scale-110', 'opacity-100', 'z-10');
-                                                entry.target.classList.add('opacity-60', 'scale-100');
-                                                const img = entry.target.querySelector('img');
-                                                if (img) img.classList.remove('scale-105');
-                                        }
-                                });
-                        }, observerOptions);
+        if (!isHoveringCarousel) {
+            progressTime += delta;
+            if (progressTime >= durationLimit) {
+                progressTime = 0;
+                nextSlide();
+                return;
+            }
+            const percent = Math.min((progressTime / durationLimit) * 100, 100);
+            if (carouselProgressBar) carouselProgressBar.style.width = `${percent}%`;
+        }
+        progressFrameId = requestAnimationFrame(progressLoop);
+    }
 
-                        frames.forEach(frame => {
-                                observer.observe(frame);
-                        });
+    function startProgress() {
+        progressTime = 0;
+        lastTimestamp = null;
+        if (progressFrameId) cancelAnimationFrame(progressFrameId);
+        progressFrameId = requestAnimationFrame(progressLoop);
+    }
+
+    function updateCarouselState() {
+        carouselCards.forEach((card, index) => {
+            card.style.transform = '';
+            card.style.transition = '';
+            const bgImg = card.querySelector('.carousel-card-bg');
+            if (bgImg) { bgImg.style.transform = ''; bgImg.style.transition = ''; }
+
+            card.className = 'carousel-card';
+
+            if (index === currentSlideIndex) {
+                card.classList.add('active');
+            } else if (index === (currentSlideIndex - 1 + totalSlidesCount) % totalSlidesCount) {
+                card.classList.add('prev');
+            } else if (index === (currentSlideIndex + 1) % totalSlidesCount) {
+                card.classList.add('next');
+            } else {
+                const diff = (index - currentSlideIndex + totalSlidesCount) % totalSlidesCount;
+                card.classList.add(diff > totalSlidesCount / 2 ? 'hidden-left' : 'hidden-right');
+            }
+        });
+
+        carouselDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlideIndex);
+        });
+
+        startProgress();
+    }
+
+    function nextSlide() {
+        currentSlideIndex = (currentSlideIndex + 1) % totalSlidesCount;
+        updateCarouselState();
+    }
+
+    function prevSlide() {
+        currentSlideIndex = (currentSlideIndex - 1 + totalSlidesCount) % totalSlidesCount;
+        updateCarouselState();
+    }
+
+    if (carouselPrevBtn) carouselPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); });
+    if (carouselNextBtn) carouselNextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); });
+
+    carouselDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+            const targetIdx = parseInt(dot.getAttribute('data-slide'), 10);
+            if (targetIdx !== currentSlideIndex) { currentSlideIndex = targetIdx; updateCarouselState(); }
+        });
+    });
+
+    carouselCards.forEach((card) => {
+        card.addEventListener('click', () => {
+            if (card.classList.contains('prev')) prevSlide();
+            else if (card.classList.contains('next')) nextSlide();
+        });
+    });
+
+    if (carouselView) {
+        carouselView.addEventListener('mouseenter', () => { isHoveringCarousel = true; });
+        carouselView.addEventListener('mouseleave', () => { isHoveringCarousel = false; lastTimestamp = null; });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (!carouselView) return;
+        const rect = carouselView.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            if (e.key === 'ArrowLeft') prevSlide();
+            else if (e.key === 'ArrowRight') nextSlide();
+        }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    if (carouselView) {
+        carouselView.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        carouselView.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 55) nextSlide();
+            else if (touchEndX > touchStartX + 55) prevSlide();
+        }, { passive: true });
+    }
+
+    updateCarouselState();
+}
+// ============================================
+// END CAROUSEL SCRIPT
+// ============================================
 
                         // Scrollspy & Nav Link Highlight logic
                         const sections = document.querySelectorAll('section[id], footer[id], div[id="about"]');
