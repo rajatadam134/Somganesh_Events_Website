@@ -182,15 +182,59 @@
                         border-color: #E8A217;
                 }
 
+                /* Mobile navigation */
+                .mobile-nav-toggle {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 9999px;
+                        border: 1px solid rgba(255, 255, 255, 0.12);
+                        background: rgba(5, 12, 26, 0.72);
+                }
 
+                #mobile-menu {
+                        position: fixed;
+                        top: 82px;
+                        left: 20px;
+                        right: 20px;
+                        z-index: 45;
+                        display: none;
+                        flex-direction: column;
+                        gap: 4px;
+                        padding: 16px;
+                        border: 1px solid rgba(255, 255, 255, 0.12);
+                        border-radius: 18px;
+                        background: rgba(5, 12, 26, 0.96);
+                        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+                        backdrop-filter: blur(18px);
+                        -webkit-backdrop-filter: blur(18px);
+                }
 
+                #mobile-menu.open {
+                        display: flex;
+                }
 
+                #mobile-menu a {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        min-height: 46px;
+                        padding: 0 12px;
+                        border-radius: 12px;
+                        color: #e2e8f0;
+                        font-family: 'Hanken Grotesk', sans-serif;
+                        font-size: 16px;
+                        font-weight: 600;
+                }
 
-                /* Mobile nav toggle styling */
-                @media (max-width: 768px) {
-                        .mobile-nav-toggle {
-                                display: none !important;
-                        }
+                #mobile-menu a:hover,
+                #mobile-menu a:focus-visible,
+                #mobile-menu a.text-primary {
+                        color: #f1a80a;
+                        background: rgba(241, 168, 10, 0.1);
+                        outline: none;
                 }
 
                 /* Navbar scroll styling */
@@ -783,15 +827,17 @@
     pointer-events: auto;
 }
 
-.carousel-card.active:hover {
-    transform: translate3d(-50%, -8px, 0) scale(1.02);
-    box-shadow: 0 30px 60px rgba(241, 168, 10, 0.35), 0 0 0 1px rgba(241, 168, 10, 0.25);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+@media (hover: hover) and (pointer: fine) {
+    .carousel-card.active:hover {
+        transform: translate3d(-50%, -8px, 0) scale(1.02);
+        box-shadow: 0 30px 60px rgba(241, 168, 10, 0.35), 0 0 0 1px rgba(241, 168, 10, 0.25);
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
 
-.carousel-card.active:hover .carousel-card-bg {
-    transform: scale(1.15);
+    .carousel-card.active:hover .carousel-card-bg {
+        transform: scale(1.15);
+    }
 }
 
 .carousel-card.prev {
@@ -947,10 +993,17 @@
 .carousel-dot {
     width: 8px;
     height: 8px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.22);
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-dot:focus-visible {
+    outline: 2px solid #f1a80a;
+    outline-offset: 4px;
 }
 
 .carousel-dot.active {
@@ -975,10 +1028,11 @@
     .carousel-card {
         width: 90%;
         max-width: 500px;
-        left: 5%;
+        left: 50%;
+        cursor: default;
     }
     .carousel-card.active {
-        transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(-50%, 0, 0) scale(1);
         opacity: 1;
         z-index: 10;
         filter: none;
@@ -987,7 +1041,7 @@
     .carousel-card.next,
     .carousel-card.hidden-left,
     .carousel-card.hidden-right {
-        transform: translate3d(0, 0, -100px) scale(0.9);
+        transform: translate3d(-50%, 0, -100px) scale(0.9);
         opacity: 0;
         z-index: 1;
         pointer-events: none;
@@ -1005,9 +1059,9 @@
         <div id="scroll-progress-bar"></div>
         <!-- TopNavBar: High-end floating glassmorphic navbar with Somganesh branding -->
         <nav
-                class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-gutter max-w-container-max mx-auto bg-[#050C1A]/40 backdrop-blur-md border-b border-white/5">
+                class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter max-w-container-max mx-auto bg-[#050C1A]/40 backdrop-blur-md border-b border-white/5">
                 <div class="flex items-center">
-                        <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-14 w-auto object-contain" />
+                        <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-14 w-auto object-contain" width="750" height="340" decoding="async" />
                 </div>
                 <div class="hidden md:flex gap-8 items-center" id="nav-links">
                         <a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 transition-colors"
@@ -1028,20 +1082,28 @@
                                 </span>
                         </a>
                 </div>
-                <button class="mobile-nav-toggle md:hidden text-on-surface" aria-label="Toggle Navigation Menu">
-                        <span class="material-symbols-outlined">menu</span>
+                <button class="mobile-nav-toggle md:hidden text-on-surface" type="button" aria-label="Open navigation menu"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
                 </button>
         </nav>
+        <div id="mobile-menu" class="md:hidden" aria-hidden="true">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#about">About</a>
+                <a href="#contact">Book Consultation</a>
+        </div>
 
         <main>
                 <!-- Hero Section: Premium cinematic landing look featuring custom overlays, decorative pillars, and CTAs -->
                 <section id="home"
                         class="min-h-screen relative flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-32 pb-24 overflow-hidden">
-                        <!-- Background Image with Graduate Dark Scrim -->
+                        <!-- Background Image with Gradient Dark Scrim -->
                         <div class="hero-image-wrapper absolute inset-0 z-0">
                                 <img alt="Cinematic luxury event lighting background"
                                         class="hero-bg-img w-full h-full object-cover object-center opacity-70"
-                                        src="images/Gemini_Generated_Image_2.png" />
+                                        src="images/Gemini_Generated_Image_2.png" width="2816" height="1536" fetchpriority="high" decoding="async" />
                                 <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-[#050C1A]">
                                 </div>
                                 <div
@@ -1136,7 +1198,7 @@
                         <div class="px-margin-mobile md:px-margin-desktop pb-12">
                                 <div class="max-w-container-max mx-auto">
                                         <div class="max-w-4xl">
-                                                <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-24 w-auto object-contain mb-4" />
+                                                <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-24 w-auto object-contain mb-4" width="750" height="340" loading="lazy" decoding="async" />
                                                 <h2
                                                         class="font-display-lg text-display-lg md:text-[72px] md:leading-[84px] text-white font-bold mb-6">
                                                         Designing experiences that linger in the mind.</h2>
@@ -1153,7 +1215,7 @@
                         <div class="w-full px-4 md:px-8 pb-16">
                                 <div class="accordion-panels" id="accordion-panels" role="tablist" aria-label="Our Services">
                                   <div class="accordion-panel active" role="tab" tabindex="0" aria-selected="true" aria-label="Signature Event Curation">
-                                    <img class="accordion-panel-bg" src="images/image_1.png" alt="Signature Event Curation" loading="lazy" />
+                                    <img class="accordion-panel-bg" src="images/image_1.png" alt="Signature Event Curation" width="1024" height="697" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true"><span class="material-symbols-outlined">auto_awesome</span></div>
                                     <span class="accordion-panel-tap-hint">View</span>
@@ -1162,7 +1224,7 @@
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Grand Venue Transformation">
-                                    <img class="accordion-panel-bg" src="images/image_4.png" alt="Grand Venue Transformation" loading="lazy" />
+                                    <img class="accordion-panel-bg" src="images/image_4.png" alt="Grand Venue Transformation" width="1024" height="688" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true"><span class="material-symbols-outlined">palette</span></div>
                                     <span class="accordion-panel-tap-hint">View</span>
@@ -1171,7 +1233,7 @@
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Royal Weddings and Vivah">
-                                    <img class="accordion-panel-bg" src="images/image_8.png" alt="Royal Weddings and Vivah" loading="lazy" />
+                                    <img class="accordion-panel-bg" src="images/image_8.png" alt="Royal Weddings and Vivah" width="836" height="768" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true"><span class="material-symbols-outlined">favorite</span></div>
                                     <span class="accordion-panel-tap-hint">View</span>
@@ -1180,7 +1242,7 @@
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Divine Deity Decor">
-                                    <img class="accordion-panel-bg" src="images/image_12.jpeg" alt="Divine Deity Decor" loading="lazy" />
+                                    <img class="accordion-panel-bg" src="images/image_12.jpeg" alt="Divine Deity Decor" width="4032" height="3024" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true"><span class="material-symbols-outlined">temple_hindu</span></div>
                                     <span class="accordion-panel-tap-hint">View</span>
@@ -1189,7 +1251,7 @@
                                     </div>
                                   </div>
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false" aria-label="Milestone Celebrations">
-                                    <img class="accordion-panel-bg" src="images/image_13.jpeg" alt="Milestone Celebrations" loading="lazy" />
+                                    <img class="accordion-panel-bg" src="images/image_13.jpeg" alt="Milestone Celebrations" width="4032" height="3024" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true"><span class="material-symbols-outlined">cake</span></div>
                                     <span class="accordion-panel-tap-hint">View</span>
@@ -1202,7 +1264,7 @@
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false"
                                        aria-label="Royal Festive Galas">
                                     <img class="accordion-panel-bg" src="images/image_15.PNG"
-                                         alt="Royal Festive Galas" loading="lazy" />
+                                         alt="Royal Festive Galas" width="1284" height="1365" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true">
                                       <span class="material-symbols-outlined">celebration</span>
@@ -1217,7 +1279,7 @@
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false"
                                        aria-label="Scenic Arch and Stage Design">
                                     <img class="accordion-panel-bg" src="images/image_20.jpeg"
-                                         alt="Scenic Arch and Stage Design" loading="lazy" />
+                                         alt="Scenic Arch and Stage Design" width="498" height="803" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true">
                                       <span class="material-symbols-outlined">yard</span>
@@ -1232,7 +1294,7 @@
                                   <div class="accordion-panel" role="tab" tabindex="0" aria-selected="false"
                                        aria-label="Elite Backdrop Design">
                                     <img class="accordion-panel-bg" src="images/image_22.jpeg"
-                                         alt="Elite Backdrop Design" loading="lazy" />
+                                         alt="Elite Backdrop Design" width="800" height="485" loading="lazy" decoding="async" />
                                     <div class="accordion-panel-overlay"></div>
                                     <div class="accordion-panel-icon-pill" aria-hidden="true">
                                       <span class="material-symbols-outlined">diamond</span>
@@ -1273,7 +1335,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Signature Event Curation"
                                                 class="carousel-card-bg"
-                                                src="images/image_16.png" loading="lazy" />
+                                                src="images/image_16.png" width="1792" height="2390" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1282,7 +1344,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Grand Venue Transformation"
                                                 class="carousel-card-bg"
-                                                src="images/image_2.png" loading="lazy" />
+                                                src="images/image_2.png" width="768" height="949" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1291,7 +1353,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Royal Weddings and Vivah"
                                                 class="carousel-card-bg"
-                                                src="images/image_5.png" loading="lazy" />
+                                                src="images/image_5.png" width="873" height="768" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1300,7 +1362,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Divine Deity Decor"
                                                 class="carousel-card-bg"
-                                                src="images/image_6.png" loading="lazy" />
+                                                src="images/image_6.png" width="1024" height="648" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1309,7 +1371,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Milestone Celebrations"
                                                 class="carousel-card-bg"
-                                                src="images/image_7.png" loading="lazy" />
+                                                src="images/image_7.png" width="1024" height="408" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1318,7 +1380,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Royal Festive Galas"
                                                 class="carousel-card-bg"
-                                                src="images/image_10.png" loading="lazy" />
+                                                src="images/image_10.png" width="1024" height="689" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1327,7 +1389,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Scenic Arch and Stage Design"
                                                 class="carousel-card-bg"
-                                                src="images/image_17.jpeg" loading="lazy" />
+                                                src="images/image_17.jpeg" width="3383" height="3024" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1336,7 +1398,7 @@
                                 <div class="carousel-card-bg-wrap">
                                         <img alt="Elite Backdrop Design"
                                                 class="carousel-card-bg"
-                                                src="images/image_19.jpeg" loading="lazy" />
+                                                src="images/image_19.jpeg" width="564" height="702" loading="lazy" decoding="async" />
                                 </div>
                         </div>
 
@@ -1349,14 +1411,14 @@
 
                 <!-- Dot Indicators — 8 dots for 8 cards -->
                 <div class="carousel-dots-container" id="carousel-dots">
-                        <span class="carousel-dot active" data-slide="0"></span>
-                        <span class="carousel-dot" data-slide="1"></span>
-                        <span class="carousel-dot" data-slide="2"></span>
-                        <span class="carousel-dot" data-slide="3"></span>
-                        <span class="carousel-dot" data-slide="4"></span>
-                        <span class="carousel-dot" data-slide="5"></span>
-                        <span class="carousel-dot" data-slide="6"></span>
-                        <span class="carousel-dot" data-slide="7"></span>
+                        <button class="carousel-dot active" type="button" data-slide="0" aria-label="Show portfolio image 1" aria-current="true"></button>
+                        <button class="carousel-dot" type="button" data-slide="1" aria-label="Show portfolio image 2"></button>
+                        <button class="carousel-dot" type="button" data-slide="2" aria-label="Show portfolio image 3"></button>
+                        <button class="carousel-dot" type="button" data-slide="3" aria-label="Show portfolio image 4"></button>
+                        <button class="carousel-dot" type="button" data-slide="4" aria-label="Show portfolio image 5"></button>
+                        <button class="carousel-dot" type="button" data-slide="5" aria-label="Show portfolio image 6"></button>
+                        <button class="carousel-dot" type="button" data-slide="6" aria-label="Show portfolio image 7"></button>
+                        <button class="carousel-dot" type="button" data-slide="7" aria-label="Show portfolio image 8"></button>
                 </div>
         </div>
 </section>
@@ -1372,7 +1434,7 @@
                         <!-- Column 1: Brand & Contact Info -->
                         <div class="flex flex-col gap-4">
                                 <div class="flex items-center">
-                                        <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-14 w-auto object-contain" />
+                                        <img src="images/Somganesh_Logo_Text.PNG" alt="Somganesh" class="h-14 w-auto object-contain" width="750" height="340" loading="lazy" decoding="async" />
                                 </div>
                                 <p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-2">Elevating
                                         events and celebrations into curated, cinematic visual masterpieces globally.
@@ -1559,6 +1621,11 @@ if (carouselCards.length > 0) {
 
         carouselDots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlideIndex);
+            if (index === currentSlideIndex) {
+                dot.setAttribute('aria-current', 'true');
+            } else {
+                dot.removeAttribute('aria-current');
+            }
         });
 
         startProgress();
@@ -1625,6 +1692,43 @@ if (carouselCards.length > 0) {
                         // Scrollspy & Nav Link Highlight logic
                         const sections = document.querySelectorAll('section[id], footer[id], div[id="about"]');
                         const navLinks = document.querySelectorAll('#nav-links a');
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+                        const mobileNavIcon = mobileNavToggle ? mobileNavToggle.querySelector('.material-symbols-outlined') : null;
+                        const mobileNavLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+                        const allNavLinks = [...navLinks, ...mobileNavLinks];
+
+                        function setMobileMenuOpen(isOpen) {
+                                if (!mobileMenu || !mobileNavToggle) return;
+                                mobileMenu.classList.toggle('open', isOpen);
+                                mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                                mobileNavToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                                mobileNavToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+                                if (mobileNavIcon) mobileNavIcon.textContent = isOpen ? 'close' : 'menu';
+                        }
+
+                        function setActiveNavLink(activeSectionId) {
+                                navLinks.forEach(link => {
+                                        const isActive = link.getAttribute('href') === `#${activeSectionId}`;
+                                        link.classList.toggle('text-primary', isActive);
+                                        link.classList.toggle('font-bold', isActive);
+                                        link.classList.toggle('border-b-2', isActive);
+                                        link.classList.toggle('border-primary', isActive);
+                                        link.classList.toggle('pb-1', isActive);
+                                        link.classList.toggle('text-on-surface-variant', !isActive);
+                                        link.classList.toggle('hover:text-on-surface', !isActive);
+                                });
+
+                                mobileNavLinks.forEach(link => {
+                                        const isActive = link.getAttribute('href') === `#${activeSectionId}`;
+                                        link.classList.toggle('text-primary', isActive);
+                                        if (isActive) {
+                                                link.setAttribute('aria-current', 'page');
+                                        } else {
+                                                link.removeAttribute('aria-current');
+                                        }
+                                });
+                        }
 
                         function activateNavLink() {
                                 let scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
@@ -1654,16 +1758,7 @@ if (carouselCards.length > 0) {
                                         activeSectionId = 'about';
                                 }
 
-                                navLinks.forEach(link => {
-                                        const href = link.getAttribute('href');
-                                        if (href === `#${activeSectionId}`) {
-                                                link.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
-                                                link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
-                                        } else {
-                                                link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
-                                                link.classList.add('text-on-surface-variant', 'hover:text-on-surface');
-                                        }
-                                });
+                                setActiveNavLink(activeSectionId);
                         }
 
                         window.addEventListener('scroll', activateNavLink);
@@ -1671,7 +1766,7 @@ if (carouselCards.length > 0) {
                         activateNavLink();
 
                         // Add smooth scroll behavior and manual highlight click override
-                        navLinks.forEach(link => {
+                        allNavLinks.forEach(link => {
                                 link.addEventListener('click', function(e) {
                                         const targetId = this.getAttribute('href');
                                         if (targetId.startsWith('#')) {
@@ -1691,16 +1786,29 @@ if (carouselCards.length > 0) {
                                                                 });
                                                         }
                                                         
-                                                        // Manually set active class
-                                                        navLinks.forEach(l => {
-                                                                l.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
-                                                                l.classList.add('text-on-surface-variant', 'hover:text-on-surface');
-                                                        });
-                                                        this.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
-                                                        this.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                                                        const activeId = targetId === '#contact' ? 'about' : targetId.replace('#', '');
+                                                        setActiveNavLink(activeId);
+                                                        setMobileMenuOpen(false);
                                                 }
                                         }
                                 });
+                        });
+
+                        if (mobileNavToggle) {
+                                mobileNavToggle.addEventListener('click', () => {
+                                        setMobileMenuOpen(!mobileMenu.classList.contains('open'));
+                                });
+                        }
+
+                        document.addEventListener('click', (e) => {
+                                if (!mobileMenu || !mobileNavToggle || !mobileMenu.classList.contains('open')) return;
+                                if (!mobileMenu.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+                                        setMobileMenuOpen(false);
+                                }
+                        });
+
+                        document.addEventListener('keydown', (e) => {
+                                if (e.key === 'Escape') setMobileMenuOpen(false);
                         });
 
                         // Navbar scroll transition JS
